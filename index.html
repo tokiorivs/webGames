@@ -6,18 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Minijuegos interactivos B2B para tótems en eventos. Aumenta la recolección de leads y garantiza la retención del público.">
-    <title>TotemGameStudio | Convierte tu Evento en un Imán de Leads</title>
+    <title>totemIn | Convierte tu Evento en un Imán de Leads</title>
     <!-- Google Fonts: Inter as primary font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Titan+One&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header class="header">
         <div class="container header-container">
-            <div class="logo">TotemGame<span>Studio</span></div>
+            <div class="logo">
+                <img src="https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/logo_claro.png" alt="totemIn Logo" class="logo-img">
+            </div>
             <nav class="nav">
                 <a href="#beneficios" class="nav-link">Beneficios</a>
                 <a href="#juegos" class="nav-link">Juegos</a>
@@ -121,10 +123,28 @@
                     <div class="card game-card">
                         <div class="game-visual bg-gradient-4">☄️</div>
                         <div class="game-info">
-                            <h3 class="card-title">Base Defense</h3>
-                            <p class="game-meta">⏳ 30s | 🕹️ Alta intensidad</p>
-                            <p class="card-desc">Protege la base central destruyendo meteoritos. Aumenta la velocidad
-                                para un reto lleno de adrenalina.</p>
+                            <h3 class="card-title">Meteor Rescue</h3>
+                            <p class="game-meta">⏳ 40s | 🛡️ Defensa de Marca</p>
+                            <p class="card-desc">Protege tu branding en la base. Los meteoritos caen cada vez más
+                                rápido. ¡Sobrevive 40s para ganar!</p>
+                        </div>
+                    </div>
+                    <div class="card game-card">
+                        <div class="game-visual bg-gradient-5">🎫</div>
+                        <div class="game-info">
+                            <h3 class="card-title">Raspa y Gana</h3>
+                            <p class="game-meta">⏳ Variable | 🎰 Simulación Vending</p>
+                            <p class="card-desc">16 cartillas interactivas. Elige, raspa y descubre si ganaste.
+                                Dificultad y diseño 100% personalizables.</p>
+                        </div>
+                    </div>
+                    <div class="card game-card">
+                        <div class="game-visual bg-gradient-6">💧</div>
+                        <div class="game-info">
+                            <h3 class="card-title">Hidrogame (1 vs 1)</h3>
+                            <p class="game-meta">⏳ 40s | 🕹️ Duelo de Velocidad</p>
+                            <p class="card-desc">Competencia épica pulsando botones para subir el nivel de agua. ¡El más
+                                rápido en 40s se lleva el premio!</p>
                         </div>
                     </div>
                 </div>
@@ -138,26 +158,46 @@
                 <div class="game-detail-grid">
                     <!-- Left: Media Viewer -->
                     <div class="media-column">
-                        <div class="main-media">
-                            <div class="main-media-placeholder">
+                        <div class="main-media" id="mainMediaContainer">
+                            <!-- Default view is a placeholder/video teaser -->
+                            <div class="main-media-placeholder" id="mainMediaPlaceholder">
                                 <span class="play-icon">▶</span>
                                 <span>VER GAMEPLAY TEASER</span>
                             </div>
+                            <img id="mainMediaImage" class="main-media-img" src="" alt="Game Screenshot"
+                                style="display: none;">
                         </div>
-                        <div class="thumbnail-slider">
-                            <div class="thumb active"><div class="thumb-bg game-thumb-1"></div></div>
-                            <div class="thumb"><div class="thumb-bg game-thumb-2"></div></div>
-                            <div class="thumb"><div class="thumb-bg game-thumb-3"></div></div>
-                            <div class="thumb"><div class="thumb-bg game-thumb-4"></div></div>
-                            <div class="thumb"><div class="thumb-bg game-thumb-5"></div></div>
+                        <div class="thumbnail-slider" id="thumbnailSlider">
+                            <div class="thumb active" data-type="video">
+                                <div class="thumb-bg"
+                                    style="background-image: linear-gradient(45deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                                    ▶</div>
+                            </div>
+                            <div class="thumb" data-type="image" data-src="Hidrogame_1.png">
+                                <div class="thumb-bg game-thumb-1"></div>
+                            </div>
+                            <div class="thumb" data-type="image" data-src="Luma_ruleta.png">
+                                <div class="thumb-bg game-thumb-2"></div>
+                            </div>
+                            <div class="thumb" data-type="image" data-src="Renal_rescue_juego_1.png">
+                                <div class="thumb-bg game-thumb-3"></div>
+                            </div>
+                            <div class="thumb" data-type="image" data-src="Urosur_menu.png">
+                                <div class="thumb-bg game-thumb-4"></div>
+                            </div>
+                            <div class="thumb" data-type="image" data-src="totem_tecsup_inicio.png">
+                                <div class="thumb-bg game-thumb-5"></div>
+                            </div>
                         </div>
                     </div>
-                    
+
                     <!-- Right: Metadata -->
                     <div class="metadata-column">
                         <div class="game-banner"></div>
-                        <p class="game-short-desc">Observa el engagement real que genera un tótem interactivo. Minijuegos diseñados con mecánicas virales para capturar la máxima atención en tu próximo evento corporativo o activación de marca.</p>
-                        
+                        <p class="game-short-desc">Observa el engagement real que genera un tótem interactivo.
+                            Minijuegos diseñados con mecánicas virales para capturar la máxima atención en tu próximo
+                            evento corporativo o activación de marca.</p>
+
                         <div class="game-specs">
                             <div class="spec-row">
                                 <span class="spec-label">RESEÑAS DE EVENTOS:</span>
@@ -169,14 +209,14 @@
                             </div>
                             <div class="spec-row">
                                 <span class="spec-label">DESARROLLADOR:</span>
-                                <span class="spec-value highlight">TotemGameStudio</span>
+                                <span class="spec-value highlight">totemIn</span>
                             </div>
                             <div class="spec-row">
                                 <span class="spec-label">EDITOR:</span>
                                 <span class="spec-value highlight">Tu Marca (Marca Blanca)</span>
                             </div>
                         </div>
-                        
+
                         <div class="game-tags-container">
                             <span class="tags-label">Etiquetas populares para esta solución:</span>
                             <div class="game-tags">
@@ -223,8 +263,10 @@
 
     <footer class="footer">
         <div class="container footer-container">
-            <div class="logo">TotemGame<span>Studio</span></div>
-            <p class="footer-text">&copy; 2026 TotemGameStudio. Transformando eventos a través de experiencias interactivas.
+            <div class="logo">
+                <img src="https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/logo_claro.png" alt="totemIn Logo" class="logo-img">
+            </div>
+            <p class="footer-text">&copy; 2026 totemIn. Transformando eventos a través de experiencias interactivas.
             </p>
         </div>
     </footer>

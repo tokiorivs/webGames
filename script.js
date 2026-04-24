@@ -55,4 +55,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 4. Media Viewer Logic (Dynamic Image/Video Switching)
+    const BASE_URL = "https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/";
+    
+    const mainMediaPlaceholder = document.getElementById('mainMediaPlaceholder');
+    const mainMediaImage = document.getElementById('mainMediaImage');
+    const thumbs = document.querySelectorAll('#thumbnailSlider .thumb');
+
+    thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            // Remove active class from all thumbs
+            thumbs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked thumb
+            thumb.classList.add('active');
+
+            const type = thumb.getAttribute('data-type');
+            const src = thumb.getAttribute('data-src');
+
+            if (type === 'video') {
+                // Show placeholder for video (teaser)
+                mainMediaPlaceholder.style.display = 'flex';
+                mainMediaImage.style.display = 'none';
+            } else if (type === 'image') {
+                // Show image
+                mainMediaPlaceholder.style.display = 'none';
+                mainMediaImage.style.display = 'block';
+                mainMediaImage.src = BASE_URL + src;
+            }
+        });
+    });
+
 });
