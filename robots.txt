@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Ruta hacia el Sitemap
+Sitemap: https://totemin.cc/sitemap.xml

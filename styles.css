@@ -12,9 +12,9 @@
     --surface-border: hsla(215, 30%, 50%, 0.2);
 
     /* 10% Accent/Action */
-    --primary: hsl(199, 89%, 48%);
-    /* Electric Blue */
-    --primary-hover: hsl(199, 89%, 60%);
+    --primary: hsl(142, 70%, 49%);
+    /* WhatsApp Green #25D366 */
+    --primary-hover: hsl(142, 70%, 60%);
     --secondary: hsl(267, 100%, 68%);
     /* Vivid Purple */
 
@@ -146,12 +146,12 @@ a {
 .btn-primary {
     background-color: var(--primary);
     color: var(--text-primary);
-    box-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.39);
+    box-shadow: 0 4px 14px 0 rgba(37, 211, 102, 0.39);
 }
 
 .btn-primary:hover {
     background-color: var(--primary-hover);
-    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
     transform: translateY(-2px);
 }
 
@@ -205,7 +205,8 @@ a {
 }
 
 .logo-img {
-    height: 40px; /* Adjust height as needed */
+    height: 40px;
+    /* Adjust height as needed */
     width: auto;
     display: block;
 }
@@ -262,7 +263,7 @@ a {
 .card:hover {
     transform: translateY(-4px);
     border-color: var(--primary);
-    box-shadow: 0 10px 40px -10px rgba(14, 165, 233, 0.2);
+    box-shadow: 0 10px 40px -10px rgba(37, 211, 102, 0.2);
 }
 
 /* Hero Section */
@@ -343,8 +344,10 @@ a {
 
 .totem-screen {
     background: var(--bg-primary);
-    width: 90%;
-    height: 80%;
+    width: 92%;
+    aspect-ratio: 9 / 16;
+    height: auto;
+    max-height: 90%;
     border-radius: var(--radius-sm);
     overflow: hidden;
     position: relative;
@@ -353,22 +356,16 @@ a {
     flex-direction: column;
 }
 
-.mockup-game {
+.mockup-video {
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    opacity: 0.8;
-    position: relative;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.mockup-game::after {
-    content: '👾';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
-}
+
 
 @keyframes float {
     0% {
@@ -558,7 +555,7 @@ a {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+    box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
 }
 
 /* Footer */
@@ -567,6 +564,13 @@ a {
     padding: var(--space-4) 0;
     text-align: center;
     margin-top: var(--space-8);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-text {
@@ -718,23 +722,35 @@ a {
 
 /* Base colors for thumbnails (fallback or placeholders) */
 .game-thumb-1 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Hidrogame_1.png');
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Tecsup_Menu_3.png');
 }
 
 .game-thumb-2 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Luma_ruleta.png');
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/totem_tecsup_pregunta_correcta.png');
 }
 
 .game-thumb-3 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Renal_rescue_juego_1.png');
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Ruleta_ganadora_2.png');
 }
 
 .game-thumb-4 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Urosur_menu.png');
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Urosur_raspaygana_pricipal.png');
 }
 
 .game-thumb-5 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/totem_tecsup_inicio.png');
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Urosur_cartilla_ganadora.png');
+}
+
+.game-thumb-6 {
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Luma_memoria.png');
+}
+
+.game-thumb-7 {
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Hidrogame_2.png');
+}
+
+.game-thumb-8 {
+    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Urosur_menu.png');
 }
 
 /* Metadata Column */
@@ -820,8 +836,8 @@ a {
 }
 
 .tag {
-    background: hsla(199, 89%, 48%, 0.15);
-    color: #38bdf8;
+    background: hsla(142, 70%, 49%, 0.15);
+    color: var(--primary);
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 0.75rem;
@@ -830,5 +846,395 @@ a {
 }
 
 .tag:hover {
-    background: hsla(199, 89%, 48%, 0.3);
+    background: hsla(142, 70%, 49%, 0.3);
+}
+
+/* --- Proceso Page Specific Styles --- */
+
+.proceso-page .hero-title-large {
+    font-family: 'Tourney', system-ui;
+    text-transform: uppercase;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mb-4 {
+    margin-bottom: var(--space-4);
+}
+
+.hero-proceso {
+    padding-top: calc(70px + var(--space-12));
+    padding-bottom: var(--space-12);
+    position: relative;
+    overflow: hidden;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-title-large {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: var(--space-4);
+}
+
+.hero-title-large span {
+    color: var(--primary);
+    -webkit-text-stroke: 1px var(--primary);
+    -webkit-text-fill-color: transparent;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.float-item {
+    position: absolute;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-sm);
+    opacity: 0.2;
+    filter: blur(2px);
+    animation: float 8s ease-in-out infinite;
+}
+
+.item-1 {
+    width: 100px;
+    height: 140px;
+    top: 20%;
+    left: 10%;
+    transform: rotate(15deg);
+}
+
+.item-2 {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -2s;
+}
+
+.item-3 {
+    width: 120px;
+    height: 160px;
+    top: 10%;
+    right: 10%;
+    transform: rotate(-10deg);
+    animation-delay: -4s;
+}
+
+/* Logo Cloud */
+.logo-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-6);
+    align-items: center;
+    opacity: 0.6;
+    padding: var(--space-4) 0;
+}
+
+.logo-item {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+}
+
+/* Feature Sections (Alternating) */
+.feature-block {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+    margin-bottom: var(--space-12);
+}
+
+@media (min-width: 992px) {
+    .feature-block {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.feature-content {
+    position: relative;
+}
+
+.accent-bar {
+    width: 60px;
+    height: 6px;
+    background: var(--primary);
+    margin-bottom: var(--space-3);
+    border-radius: 3px;
+}
+
+.feature-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-3);
+}
+
+.feature-desc {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+}
+
+.visual-demo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #05080f;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--surface-border);
+}
+
+.demo-screen {
+    width: 70%;
+    height: 70%;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 40px rgba(37, 211, 102, 0.2);
+}
+
+.demo-overlay {
+    position: absolute;
+    bottom: var(--space-3);
+    right: var(--space-3);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+/* Steps Section (Lemon Map Style) */
+.steps-grid {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.step-card {
+    background: #111827;
+    /* Darker card like Lemon map */
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    display: flex;
+    gap: var(--space-4);
+    transition: transform var(--transition-normal);
+}
+
+.step-card:hover {
+    transform: scale(1.02);
+    border-color: var(--primary);
+}
+
+.step-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.step-title {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-1);
+}
+
+.step-desc {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* FAQ Section */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--surface-glass);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-2);
+    padding: var(--space-3);
+}
+
+.faq-question {
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question::after {
+    content: '+';
+    color: var(--primary);
+}
+
+.faq-answer {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* CTA Final */
+.cta-final {
+    background: linear-gradient(180deg, transparent, hsla(142, 70%, 49%, 0.05));
+    padding: var(--space-12) 0;
+}
+
+/* Navigation active state */
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    margin-top: 4px;
+}
+
+/* --- Article & Blog Styles --- */
+.article-page {
+    background-color: var(--bg-page);
+}
+
+.article-hero {
+    padding-top: calc(70px + var(--space-8));
+    padding-bottom: var(--space-6);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.article-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+}
+
+.article-header {
+    margin-bottom: var(--space-6);
+}
+
+.article-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+    line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+    .article-title {
+        font-size: var(--font-size-xxl);
+    }
+}
+
+.article-meta {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.article-featured-image {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--surface-border);
+}
+
+.article-content {
+    font-size: var(--font-size-md);
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.article-content h2 {
+    font-size: var(--font-size-lg);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+    border-left: 4px solid var(--primary);
+    padding-left: var(--space-2);
+}
+
+.article-content p {
+    margin-bottom: var(--space-4);
+}
+
+.article-content ul, .article-content ol {
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-4);
+}
+
+.article-content li {
+    margin-bottom: var(--space-2);
+}
+
+.article-content strong {
+    color: var(--primary);
+}
+
+.article-highlight {
+    background: var(--surface-glass);
+    border: 1px solid var(--surface-border);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin: var(--space-6) 0;
+    backdrop-filter: blur(10px);
+}
+
+.article-tag {
+    display: inline-block;
+    background: hsla(142, 70%, 49%, 0.1);
+    color: var(--primary);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.article-cta {
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    background: linear-gradient(135deg, var(--surface), var(--bg-primary));
+    border-radius: var(--radius-lg);
+    text-align: center;
+    border: 1px solid var(--surface-border);
+}
+
+.article-cta h3 {
+    margin-bottom: var(--space-2);
 }
