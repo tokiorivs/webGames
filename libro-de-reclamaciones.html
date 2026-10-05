@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NKSKHJJS');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro de Reclamaciones Virtual | totemIn Studio</title>
+    <meta name="description"
+        content="Libro de Reclamaciones Virtual de totemIn conforme a la Ley N° 29571 (Código de Protección y Defensa del Consumidor de INDECOPI) y D.S. N° 011-2011-PCM en Perú.">
+    <meta name="robots" content="index, follow">
+
+    <!-- SEO Técnico & OpenGraph -->
+    <link rel="canonical" href="https://totemin.cc/libro-de-reclamaciones" />
+    <meta property="og:title" content="Libro de Reclamaciones Virtual | totemIn Studio">
+    <meta property="og:description"
+        content="Plataforma de atención y registro de reclamaciones conforme a la normativa del INDECOPI en Perú.">
+    <meta property="og:image" content="https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/logo_claro.png">
+    <meta property="og:url" content="https://totemin.cc/libro-de-reclamaciones">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_PE">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon-32x32.svg">
+    <link rel="icon" type="image/svg+xml" sizes="16x16" href="favicon-16x16.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="alternate icon" href="favicon-48x48.png">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Estilos de impresión oficial en formato A4 INDECOPI */
+        @media print {
+            .header,
+            .footer,
+            .legal-header,
+            #form-libro-reclamaciones,
+            .btn,
+            button,
+            a[href],
+            #rec-exito > div:first-child,
+            #rec-exito > div:last-child {
+                display: none !important;
+            }
+
+            body,
+            html {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                font-family: Arial, Helvetica, sans-serif !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .legal-main,
+            .legal-container,
+            .legal-card,
+            #rec-exito {
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            #rec-resumen-imprimible {
+                display: block !important;
+                border: 2px solid #0f172a !important;
+                border-radius: 4px !important;
+                padding: 16px 20px !important;
+                margin: 0 !important;
+                background: #ffffff !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                color: #1e293b !important;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0.8cm;
+            }
+        }
+
+        .spin-loader {
+            animation: spinAnim 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spinAnim {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body class="legal-page">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKSKHJJS" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/logo_claro.png" alt="totemIn Logo"
+                        class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="/#beneficios" class="nav-link">Beneficios</a>
+                <a href="/#juegos" class="nav-link">Dinámicas</a>
+                <a href="/#simulador" class="nav-link">Simulador en Vivo</a>
+                <a href="/proceso" class="nav-link">Nuestro Proceso</a>
+                <a href="/articulo1" class="nav-link">Artículos</a>
+            </nav>
+            <a href="https://wa.me/51960963900?text=Hola%20totemIn,%20me%20interesa%20una%20cotizaci%C3%B3n%20para%20un%20evento.%20Fecha%20estimada:%20[],%20Tipo%20de%20din%C3%A1mica:%20[]."
+                target="_blank" class="btn btn-primary" rel="noopener">WhatsApp</a>
+        </div>
+    </header>
+
+    <main class="legal-main">
+        <div class="container legal-container">
+            <div class="legal-header text-center">
+                <div class="reclamaciones-badge-top">
+                    <img src="libro-reclamaciones.svg" alt="Libro de Reclamaciones Virtual Perú INDECOPI" width="160" height="56">
+                </div>
+                <h1 class="legal-title">LIBRO DE <span>RECLAMACIONES</span> VIRTUAL</h1>
+                <p class="legal-subtitle">
+                    Conforme a lo dispuesto en la Ley N° 29571 (Código de Protección y Defensa del Consumidor de INDECOPI)
+                    y el Decreto Supremo N° 011-2011-PCM / D.S. N° 101-2022-PCM de la República del Perú.
+                </p>
+                <div class="legal-provider-box">
+                    <strong>Proveedor:</strong> totemIn Studio &bull; Servicios de Software y Dinámicas Interactivas &bull; Lima, Perú
+                </div>
+            </div>
+
+            <!-- FORMULARIO OFICIAL DE RECLAMACIÓN -->
+            <form id="form-libro-reclamaciones" class="reclamaciones-form">
+                <!-- Honeypot anti-spam invisible para bots -->
+                <div style="display: none;" aria-hidden="true">
+                    <input type="text" id="rec_website_url_hp" name="rec_website_url_hp" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="reclamaciones-meta-bar">
+                    <div>
+                        <span class="meta-label">Hoja de Reclamación Preasignada:</span>
+                        <strong id="correlativo-hoja" class="meta-val highlight">TOTEM-2026-0001</strong>
+                    </div>
+                    <div>
+                        <span class="meta-label">Fecha de Registro:</span>
+                        <span id="fecha-hoja" class="meta-val"></span>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 1: IDENTIFICACIÓN DEL CONSUMIDOR -->
+                <fieldset class="form-fieldset">
+                    <legend>1. Identificación del Consumidor Reclamante</legend>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="rec-nombre">Nombres y Apellidos o Razón Social *</label>
+                            <input type="text" id="rec-nombre" required placeholder="Ej: Juan Pérez / Empresa Creativa SAC">
+                        </div>
+                        <div class="form-group">
+                            <label for="rec-tipo-doc">Tipo de Documento *</label>
+                            <select id="rec-tipo-doc" class="form-select" required>
+                                <option value="DNI" selected>DNI</option>
+                                <option value="RUC">RUC</option>
+                                <option value="Carnet de Extranjería">Carnet de Extranjería</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="rec-num-doc">Número de Documento *</label>
+                            <input type="text" id="rec-num-doc" required placeholder="Número de doc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="rec-telefono">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="rec-telefono" required placeholder="+51 999 999 999">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rec-email">Correo Electrónico (para notificación) *</label>
+                        <input type="email" id="rec-email" required placeholder="correo@empresa.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rec-domicilio">Domicilio del Consumidor (Calle/Av., N°, Int.) *</label>
+                        <input type="text" id="rec-domicilio" required placeholder="Ej: Av. Javier Prado 1234, Of. 402">
+                    </div>
+
+                    <div class="form-grid-3">
+                        <div class="form-group">
+                            <label for="rec-departamento">Departamento *</label>
+                            <input type="text" id="rec-departamento" required placeholder="Ej: Lima / Arequipa / Cusco">
+                        </div>
+                        <div class="form-group">
+                            <label for="rec-provincia">Provincia *</label>
+                            <input type="text" id="rec-provincia" required placeholder="Ej: Lima / Arequipa">
+                        </div>
+                        <div class="form-group">
+                            <label for="rec-distrito">Distrito *</label>
+                            <input type="text" id="rec-distrito" required placeholder="Ej: San Isidro / Miraflores">
+                        </div>
+                    </div>
+
+                    <!-- Toggle para Menor de Edad conforme al D.S. N° 101-2022-PCM -->
+                    <div style="background: hsla(222, 47%, 7%, 0.8); border: 1px solid var(--surface-border); border-radius: var(--radius-sm); padding: 12px 16px; margin-top: 8px;">
+                        <label style="display: inline-flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; color: var(--text-primary); font-size: 0.88rem;">
+                            <input type="checkbox" id="rec-es-menor" style="width: 17px; height: 17px; cursor: pointer;">
+                            <span>El consumidor reclamante es menor de edad</span>
+                        </label>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 4px 0 0 25px;">
+                            Marque esta casilla si la persona afectada es menor de edad, a fin de registrar los datos de su padre, madre o apoderado legal conforme a ley.
+                        </p>
+
+                        <div id="box-apoderado" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--surface-border);">
+                            <div class="form-grid-3">
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="rec-apoderado-nombre">Nombres del Padre, Madre o Apoderado *</label>
+                                    <input type="text" id="rec-apoderado-nombre" placeholder="Nombre completo del apoderado">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rec-apoderado-tipo-doc">Tipo Doc. Apoderado</label>
+                                    <select id="rec-apoderado-tipo-doc" class="form-select">
+                                        <option value="DNI" selected>DNI</option>
+                                        <option value="Carnet de Extranjería">Carnet de Extranjería</option>
+                                        <option value="Pasaporte">Pasaporte</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="max-width: 320px;">
+                                <label for="rec-apoderado-num-doc">N° Documento del Apoderado (opcional)</label>
+                                <input type="text" id="rec-apoderado-num-doc" placeholder="Si lo tiene a la mano">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- SECCIÓN 2: IDENTIFICACIÓN DEL BIEN O SERVICIO -->
+                <fieldset class="form-fieldset">
+                    <legend>2. Identificación del Bien o Servicio Contratado</legend>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label>Tipo de Contratación *</label>
+                            <div class="radio-group">
+                                <label class="radio-label" style="cursor: default;">
+                                    <input type="radio" name="bien-tipo" value="Servicio" checked>
+                                    <span>Servicio (Desarrollo, personalización o soporte de software)</span>
+                                </label>
+                            </div>
+                            <small style="display: block; margin-top: 6px; font-size: 0.78rem; color: var(--text-muted, #94a3b8); line-height: 1.4;">
+                                * Prestación de servicios digitales independientes (no comercializamos ni proveemos hardware físico).
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="rec-monto">Monto Reclamado en S/ (opcional)</label>
+                            <input type="number" id="rec-monto" placeholder="Ej: 1500.00" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rec-descripcion-servicio">Detalle de la Dinámica o Servicio Contratado *</label>
+                        <input type="text" id="rec-descripcion-servicio" required
+                            placeholder="Ej: Desarrollo de Ruleta Digital para activación en stand de feria">
+                    </div>
+                </fieldset>
+
+                <!-- SECCIÓN 3: DETALLE DE LA RECLAMACIÓN -->
+                <fieldset class="form-fieldset">
+                    <legend>3. Detalle de la Reclamación y Pedido</legend>
+                    <div class="form-group">
+                        <label>Tipo de Disconformidad *</label>
+                        <div class="radio-cards-grid">
+                            <label class="radio-card">
+                                <input type="radio" name="tipo-disconformidad" value="Reclamo" checked>
+                                <div class="radio-card-content">
+                                    <strong>RECLAMO</strong>
+                                    <p>Disconformidad relacionada directamente a los servicios o software provistos.</p>
+                                </div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="tipo-disconformidad" value="Queja">
+                                <div class="radio-card-content">
+                                    <strong>QUEJA</strong>
+                                    <p>Disconformidad no relacionada a los servicios o malestar en la atención al cliente.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rec-detalle">Detalle de los Hechos (Descripción clara de lo sucedido) *</label>
+                        <textarea id="rec-detalle" rows="5" required
+                            placeholder="Describa de manera ordenada los hechos ocurridos, fechas y detalles relevantes..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rec-pedido">Pedido Concreto del Consumidor *</label>
+                        <textarea id="rec-pedido" rows="3" required
+                            placeholder="Indique con precisión qué medida o solución solicita formalmente a totemIn..."></textarea>
+                    </div>
+
+                    <div class="legal-notice-box">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rec-consentimiento" required>
+                            <span>
+                                Declaro que los datos consignados son verdaderos y autorizo a totemIn a contactarme
+                                para remitir la respuesta formal conforme al plazo legal improrrogable de <strong>quince (15) días hábiles</strong>
+                                estipulado por el Código de Protección y Defensa del Consumidor (Ley N° 29571).
+                            </span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Alerta visual de Rate Limit (Cooldown) -->
+                <div id="rec-alerta-espera" style="display: none; background: hsla(38, 92%, 50%, 0.15); border: 1.5px solid #f59e0b; border-radius: var(--radius-sm); padding: 14px 18px; margin-bottom: var(--space-4); color: #fbbf24; font-size: 0.88rem;">
+                    <strong>Tiempo de espera entre envíos:</strong>
+                    <span id="rec-alerta-texto">Ya registramos una solicitud reciente con este correo. Por favor espere 30 segundos antes de enviar nuevamente.</span>
+                </div>
+
+                <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+                    <button type="submit" id="btn-enviar-reclamo" class="btn btn-primary btn-large btn-block">
+                        Registrar y Enviar Hoja de Reclamación
+                    </button>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; width: 100%; margin-top: 6px; line-height: 1.5;">
+                        Su reclamación quedará registrada en nuestra base de datos oficial. Le enviaremos una copia detallada a su correo electrónico y también podrá descargar su constancia en formato PDF al instante.
+                    </p>
+                </div>
+            </form>
+
+            <!-- PANTALLA DE CONFIRMACIÓN POST-ENVÍO Y CONSTANCIA DIGITAL -->
+            <div id="rec-exito" style="display: none; margin-top: var(--space-6);">
+                <div class="legal-content-card" style="text-align: center; margin-bottom: var(--space-6); border-color: var(--primary);">
+                    <div style="width: 56px; height: 56px; background: hsla(142, 70%, 49%, 0.2); color: var(--primary); border: 2px solid var(--primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 12px;">
+                        ✓
+                    </div>
+                    <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 8px;">Reclamación Registrada Correctamente</h2>
+                    <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 8px;">
+                        Su Hoja de Reclamación Oficial ha sido asentada bajo el código correlativo:
+                        <strong id="codigo-constancia" style="color: var(--primary); font-size: 1.25rem; background: hsla(222, 47%, 7%, 0.8); padding: 4px 12px; border-radius: 4px; border: 1px solid var(--primary); margin-left: 6px;"></strong>
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 650px; margin: 0 auto;">
+                        De conformidad con la Ley N° 29571 y el D.S. N° 011-2011-PCM del INDECOPI, la respuesta formal le será notificada
+                        a su correo electrónico en un plazo máximo e improrrogable de <strong>quince (15) días hábiles</strong>.
+                    </p>
+                </div>
+
+                <!-- RESUMEN OFICIAL IMPRIMIBLE CONFORME A INDECOPI (A4) -->
+                <div id="rec-resumen-imprimible" style="background: #ffffff; border: 2px solid #0f172a; border-radius: 6px; padding: 22px; color: #1e293b; font-size: 0.88rem; line-height: 1.5; margin-bottom: var(--space-6);">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 14px; gap: 10px;">
+                        <div>
+                            <strong style="color: #0f172a; font-size: 1.2rem; letter-spacing: 0.5px;">totemIn Studio</strong><br>
+                            <span style="font-size: 0.85rem; color: #475569;">Desarrollo de Software y Dinámicas Interactivas para Tótems y Stands</span><br>
+                            <span style="font-size: 0.8rem; color: #64748b;">Lima, República del Perú &bull; Cobertura Nacional</span>
+                        </div>
+                        <div style="text-align: right; background: #f8fafc; border: 1.5px solid #0f172a; border-radius: 4px; padding: 6px 12px; min-width: 180px;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #475569;">LIBRO DE RECLAMACIONES VIRTUAL</span><br>
+                            <strong id="print-correlativo" style="color: #059669; font-size: 1.15rem; letter-spacing: 0.5px;"></strong><br>
+                            <span style="font-size: 0.72rem; color: #64748b;">D.S. N° 011-2011-PCM / D.S. 101-2022-PCM</span>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                        <div>
+                            <strong>Fecha y Hora:</strong> <span id="print-fecha"></span><br>
+                            <strong>Reclamante:</strong> <span id="print-nombre"></span><br>
+                            <strong>Documento:</strong> <span id="print-doc"></span><br>
+                            <div id="print-apoderado-box" style="display: none; margin-top: 4px;">
+                                <strong>Padre / Madre / Apoderado:</strong> <span id="print-apoderado"></span><br>
+                                <strong>Doc. Apoderado:</strong> <span id="print-apoderado-doc"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Teléfono:</strong> <span id="print-telefono"></span><br>
+                            <strong>Email:</strong> <span id="print-email"></span><br>
+                            <strong>Domicilio:</strong> <span id="print-domicilio"></span><br>
+                            <strong>Ubicación / Modalidad:</strong> <span id="print-ubicacion"></span>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px dashed #cbd5e1; padding-top: 10px; margin-bottom: 10px;">
+                        <strong>Tipo de Disconformidad:</strong> <span id="print-tipo" style="font-weight: 800; color: #0f172a;"></span> &bull;
+                        <strong>Canal:</strong> <span id="print-sede">Plataforma Virtual (totemin.cc)</span><br>
+                        <strong>Bien o Servicio:</strong> <span id="print-servicio"></span>
+                    </div>
+
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 4px; margin-bottom: 10px;">
+                        <strong>Detalle de los Hechos:</strong>
+                        <p id="print-detalle" style="margin: 4px 0 0; white-space: pre-wrap; font-size: 0.85rem; color: #334155;"></p>
+                    </div>
+
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 4px; margin-bottom: 10px;">
+                        <strong>Pedido Concreto del Consumidor:</strong>
+                        <p id="print-pedido" style="margin: 4px 0 0; white-space: pre-wrap; font-size: 0.85rem; color: #334155;"></p>
+                    </div>
+
+                    <!-- OBSERVACIONES Y ACCIONES DEL PROVEEDOR (SECCIÓN INDECOPI) -->
+                    <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 10px 12px; border-radius: 4px; margin-bottom: 10px;">
+                        <strong>Observaciones y Acciones Adoptadas por el Proveedor:</strong>
+                        <div style="min-height: 42px; margin-top: 4px; border: 1px dashed #cbd5e1; padding: 6px 8px; font-size: 0.8rem; color: #64748b; background: #fafafa;">
+                            <em>Espacio reservado para el registro de la propuesta de solución, observaciones o acuerdos adoptados por totemIn conforme al D.S. N° 101-2022-PCM.</em>
+                        </div>
+                    </div>
+
+                    <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 4px; padding: 8px 12px; font-size: 0.78rem; color: #92400E;">
+                        <strong>INFORMACIÓN LEGAL OBLIGATORIA (INDECOPI):</strong><br>
+                        &bull; <strong>RECLAMO:</strong> Disconformidad relacionada a los servicios contratados.<br>
+                        &bull; <strong>QUEJA:</strong> Disconformidad no relacionada a los servicios; o malestar respecto a la atención al cliente.<br>
+                        &bull; La formulación del reclamo no impide acudir a otras vías de controversia ni es condición previa para interponer denuncia ante el INDECOPI.<br>
+                        &bull; El proveedor dará respuesta formal en un plazo máximo e improrrogable de <strong>quince (15) días hábiles</strong>.
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                    <button type="button" onclick="window.print()" class="btn btn-primary btn-large">
+                        🖨️ Imprimir / Guardar Constancia Legal (PDF)
+                    </button>
+                    <button type="button" id="btn-nuevo-reclamo" class="btn btn-secondary btn-large">
+                        Registrar Otra Reclamación
+                    </button>
+                    <a href="/" class="btn btn-secondary btn-large">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Multi-columna B2B & Normativa Peruana -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-top-grid">
+                <div class="footer-col brand-col">
+                    <a href="/">
+                        <img src="https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/logo_claro.png" alt="totemIn Logo"
+                            class="logo-img">
+                    </a>
+                    <p class="footer-bio">
+                        Implementación de dinámicas interactivas y desarrollo de software a medida para tótems táctiles en ferias y eventos corporativos en Perú.
+                    </p>
+                </div>
+                <div class="footer-col links-col">
+                    <h4 class="footer-heading">Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#beneficios">Beneficios</a></li>
+                        <li><a href="/#juegos">Catálogo de Dinámicas</a></li>
+                        <li><a href="/#simulador">Simulador en Vivo</a></li>
+                        <li><a href="/proceso">Nuestro Proceso</a></li>
+                        <li><a href="/articulo1">Artículos & Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col legal-col">
+                    <h4 class="footer-heading">Legal & Normativa</h4>
+                    <ul class="footer-links">
+                        <li><a href="/terminos-y-condiciones">Términos del Servicio</a></li>
+                        <li><a href="/privacidad">Política de Privacidad</a></li>
+                        <li><a href="/libro-de-reclamaciones" class="active">Libro de Reclamaciones</a></li>
+                    </ul>
+                    <div class="footer-reclamaciones-badge">
+                        <a href="/libro-de-reclamaciones" title="Libro de Reclamaciones Virtual Conforme a INDECOPI">
+                            <img src="libro-reclamaciones.svg" alt="Libro de Reclamaciones INDECOPI" width="140" height="49">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-text">&copy; 2026 totemIn. Transformando stands y activaciones BTL a través de experiencias interactivas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ==============================================================================
+            // CONEXIÓN A GOOGLE SHEETS VIA GOOGLE APPS SCRIPT
+            // ==============================================================================
+            const GOOGLE_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyafCF-R-DMxOJJMDclSeKiznJfz9EIqTshyAPQPe_CbZ_SmNQm7wvp7n-ml1EHlnHF/exec";
+
+            const form = document.getElementById('form-libro-reclamaciones');
+            const boxExito = document.getElementById('rec-exito');
+            const codigoConstancia = document.getElementById('codigo-constancia');
+            const btnEnviar = document.getElementById('btn-enviar-reclamo');
+            const correlativoHeaderEl = document.getElementById('correlativo-hoja');
+            const fechaHojaEl = document.getElementById('fecha-hoja');
+
+            const now = new Date();
+            if (fechaHojaEl) {
+                fechaHojaEl.innerText = now.toLocaleDateString('es-PE', {
+                    day: '2-digit', month: '2-digit', year: 'numeric'
+                });
+            }
+
+            // Correlativo temporal para vista inicial
+            const fallbackCorrelativo = 'TOTEM-' + now.getFullYear() + '-0001';
+            let correlativoFinal = fallbackCorrelativo;
+            if (correlativoHeaderEl) correlativoHeaderEl.textContent = fallbackCorrelativo;
+
+            // Obtener correlativo correlativo actualizado en vivo desde Google Sheets
+            if (GOOGLE_SCRIPT_WEBAPP_URL && GOOGLE_SCRIPT_WEBAPP_URL.startsWith('http')) {
+                fetch(GOOGLE_SCRIPT_WEBAPP_URL)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data && data.correlativo && correlativoHeaderEl) {
+                            correlativoHeaderEl.textContent = data.correlativo;
+                            correlativoFinal = data.correlativo;
+                        }
+                    })
+                    .catch(err => {
+                        console.log('Precarga de correlativo omitida, usando fallback:', err);
+                    });
+            }
+
+            // Manejador condicional para Menores de Edad (D.S. N° 101-2022-PCM)
+            const checkEsMenor = document.getElementById('rec-es-menor');
+            const boxApoderado = document.getElementById('box-apoderado');
+            const inputApoderadoNombre = document.getElementById('rec-apoderado-nombre');
+            const selectApoderadoTipoDoc = document.getElementById('rec-apoderado-tipo-doc');
+            const inputApoderadoNumDoc = document.getElementById('rec-apoderado-num-doc');
+
+            if (checkEsMenor && boxApoderado) {
+                checkEsMenor.addEventListener('change', () => {
+                    if (checkEsMenor.checked) {
+                        boxApoderado.style.display = 'block';
+                        if (inputApoderadoNombre) inputApoderadoNombre.required = true;
+                    } else {
+                        boxApoderado.style.display = 'none';
+                        if (inputApoderadoNombre) {
+                            inputApoderadoNombre.required = false;
+                            inputApoderadoNombre.value = '';
+                        }
+                        if (inputApoderadoNumDoc) inputApoderadoNumDoc.value = '';
+                    }
+                });
+            }
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    if (btnEnviar) {
+                        btnEnviar.disabled = true;
+                        btnEnviar.innerHTML = `<span class="spin-loader">⏳</span> <span>Registrando reclamación y generando constancia...</span>`;
+                    }
+
+                    const nombre = document.getElementById('rec-nombre')?.value.trim() || '';
+                    const tipoDoc = document.getElementById('rec-tipo-doc')?.value || 'DNI';
+                    const numDoc = document.getElementById('rec-num-doc')?.value.trim() || '';
+                    const telefono = document.getElementById('rec-telefono')?.value.trim() || '';
+                    const email = document.getElementById('rec-email')?.value.trim() || '';
+                    const sede = 'Plataforma Virtual (totemin.cc)';
+                    const domicilio = document.getElementById('rec-domicilio')?.value.trim() || '';
+                    const departamento = document.getElementById('rec-departamento')?.value.trim() || '';
+                    const provincia = document.getElementById('rec-provincia')?.value.trim() || '';
+                    const distrito = document.getElementById('rec-distrito')?.value.trim() || '';
+
+                    const esMenorCheck = !!(checkEsMenor && checkEsMenor.checked);
+                    const esMenor = esMenorCheck ? 'SÍ' : 'NO';
+                    const apoderadoNombre = esMenorCheck ? (inputApoderadoNombre?.value.trim() || 'No especificado') : 'No aplica';
+                    const apoderadoTipoDoc = esMenorCheck ? (selectApoderadoTipoDoc?.value || 'DNI') : 'No aplica';
+                    const apoderadoNumDoc = esMenorCheck ? (inputApoderadoNumDoc?.value.trim() || 'No especificado') : 'No aplica';
+
+                    const bienTipo = document.querySelector('input[name="bien-tipo"]:checked')?.value || 'Servicio';
+                    const monto = document.getElementById('rec-monto')?.value.trim() || 'No especificado';
+                    const descripcionServicio = document.getElementById('rec-descripcion-servicio')?.value.trim() || '';
+                    const tipoDiscon = document.querySelector('input[name="tipo-disconformidad"]:checked')?.value || 'Reclamo';
+                    const detalle = document.getElementById('rec-detalle')?.value.trim() || '';
+                    const pedido = document.getElementById('rec-pedido')?.value.trim() || '';
+                    const fechaActual = new Date().toLocaleString('es-PE', { dateStyle: 'long', timeStyle: 'short' });
+
+                    // Detección de Bot mediante Honeypot
+                    const honeypotVal = document.getElementById('rec_website_url_hp')?.value.trim();
+                    if (honeypotVal) {
+                        console.warn('Bot detectado mediante Honeypot.');
+                        form.style.display = 'none';
+                        if (boxExito) boxExito.style.display = 'block';
+                        return;
+                    }
+
+                    const payload = {
+                        nombre: nombre,
+                        tipoDoc: tipoDoc,
+                        numDoc: numDoc,
+                        esMenor: esMenor,
+                        apoderadoNombre: apoderadoNombre,
+                        apoderadoTipoDoc: apoderadoTipoDoc,
+                        apoderadoNumDoc: apoderadoNumDoc,
+                        telefono: telefono,
+                        email: email,
+                        sede: sede,
+                        ciudad: sede,
+                        domicilio: domicilio,
+                        departamento: departamento,
+                        provincia: provincia,
+                        distrito: distrito,
+                        bienTipo: bienTipo,
+                        monto: monto,
+                        descripcionServicio: descripcionServicio,
+                        tipoDisconformidad: tipoDiscon,
+                        detalle: detalle,
+                        pedido: pedido,
+                        honeypot: honeypotVal || ''
+                    };
+
+                    let serverBloqueoRateLimit = false;
+                    let mensajeErrorRateLimit = '';
+
+                    // Envío a Google Apps Script si la URL está configurada
+                    if (GOOGLE_SCRIPT_WEBAPP_URL && GOOGLE_SCRIPT_WEBAPP_URL.startsWith('http')) {
+                        try {
+                            const controller = new AbortController();
+                            const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+                            const resp = await fetch(GOOGLE_SCRIPT_WEBAPP_URL, {
+                                method: 'POST',
+                                body: JSON.stringify(payload),
+                                signal: controller.signal
+                            });
+                            clearTimeout(timeoutId);
+
+                            const textResp = await resp.text();
+                            try {
+                                const resData = JSON.parse(textResp);
+                                if (resData && resData.status === 'error') {
+                                    serverBloqueoRateLimit = true;
+                                    mensajeErrorRateLimit = resData.message || 'Ya registramos una solicitud reciente con este correo. Por favor espere 30 segundos.';
+                                } else if (resData && resData.correlativo) {
+                                    correlativoFinal = resData.correlativo;
+                                }
+                            } catch (eParse) {
+                                console.warn('Respuesta no JSON:', textResp);
+                            }
+                        } catch (err) {
+                            console.warn('Fallo en conexión directa con Apps Script, ejecutando respaldo:', err);
+                            try {
+                                await fetch(GOOGLE_SCRIPT_WEBAPP_URL, {
+                                    method: 'POST',
+                                    mode: 'no-cors',
+                                    body: JSON.stringify(payload)
+                                });
+                            } catch (errFallback) {
+                                console.error('Error en respaldo:', errFallback);
+                            }
+                        }
+                    } else {
+                        // Respaldo de respaldo vía FormSubmit si la URL de Google Script aún no está colocada
+                        const formKey = "96c0b266757e4417dab8d571fb17ada6";
+                        try {
+                            const formDataBackup = new FormData();
+                            Object.keys(payload).forEach(k => formDataBackup.append(k, payload[k]));
+                            formDataBackup.append('codigo_reclamacion', correlativoFinal);
+                            fetch(`https://formsubmit.co/ajax/${formKey}`, {
+                                method: 'POST',
+                                body: formDataBackup
+                            });
+                        } catch(eBackup) { }
+                    }
+
+                    if (serverBloqueoRateLimit) {
+                        const alertaEspera = document.getElementById('rec-alerta-espera');
+                        const alertaTexto = document.getElementById('rec-alerta-texto');
+                        if (alertaEspera && alertaTexto) {
+                            alertaTexto.textContent = mensajeErrorRateLimit;
+                            alertaEspera.style.display = 'block';
+                            alertaEspera.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        if (btnEnviar) {
+                            btnEnviar.disabled = false;
+                            btnEnviar.innerText = 'Registrar y Enviar Hoja de Reclamación';
+                        }
+                        return;
+                    }
+
+                    // Guardar marca de tiempo
+                    try {
+                        localStorage.setItem('totemin_rec_last_submit_time', Date.now().toString());
+                    } catch (eStorage) { }
+
+                    // Rellenar ficha oficial imprimible A4
+                    try {
+                        if (codigoConstancia) codigoConstancia.textContent = correlativoFinal;
+                        if (correlativoHeaderEl) correlativoHeaderEl.textContent = correlativoFinal;
+
+                        const printCorrelativo = document.getElementById('print-correlativo');
+                        const printFecha = document.getElementById('print-fecha');
+                        const printNombre = document.getElementById('print-nombre');
+                        const printDoc = document.getElementById('print-doc');
+                        const printApoderado = document.getElementById('print-apoderado');
+                        const printApoderadoDoc = document.getElementById('print-apoderado-doc');
+                        const printApoderadoBox = document.getElementById('print-apoderado-box');
+                        const printTelefono = document.getElementById('print-telefono');
+                        const printEmail = document.getElementById('print-email');
+                        const printDomicilio = document.getElementById('print-domicilio');
+                        const printUbicacion = document.getElementById('print-ubicacion');
+                        const printSede = document.getElementById('print-sede');
+                        const printTipo = document.getElementById('print-tipo');
+                        const printServicio = document.getElementById('print-servicio');
+                        const printDetalle = document.getElementById('print-detalle');
+                        const printPedido = document.getElementById('print-pedido');
+
+                        if (printCorrelativo) printCorrelativo.textContent = correlativoFinal;
+                        if (printFecha) printFecha.textContent = fechaActual;
+                        if (printNombre) printNombre.textContent = nombre;
+                        if (printDoc) printDoc.textContent = `${tipoDoc} ${numDoc}`;
+                        if (esMenorCheck && printApoderadoBox) {
+                            if (printApoderado) printApoderado.textContent = apoderadoNombre;
+                            if (printApoderadoDoc) printApoderadoDoc.textContent = `${apoderadoTipoDoc} ${apoderadoNumDoc}`;
+                            printApoderadoBox.style.display = 'block';
+                        } else if (printApoderadoBox) {
+                            printApoderadoBox.style.display = 'none';
+                        }
+                        if (printTelefono) printTelefono.textContent = telefono;
+                        if (printEmail) printEmail.textContent = email;
+                        if (printDomicilio) printDomicilio.textContent = domicilio;
+                        if (printUbicacion) printUbicacion.textContent = `${distrito}, ${provincia}, ${departamento}`;
+                        if (printSede) printSede.textContent = sede;
+                        if (printTipo) printTipo.textContent = tipoDiscon.toUpperCase();
+                        if (printServicio) printServicio.textContent = `${bienTipo} - ${descripcionServicio} (Monto: S/ ${monto})`;
+                        if (printDetalle) printDetalle.textContent = detalle;
+                        if (printPedido) printPedido.textContent = pedido;
+                    } catch (errDom) {
+                        console.error('Error al actualizar ficha imprimible:', errDom);
+                    }
+
+                    form.style.display = 'none';
+                    if (boxExito) {
+                        boxExito.style.display = 'block';
+                        boxExito.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+
+            // Botón para registrar otra reclamación
+            const btnNuevoReclamo = document.getElementById('btn-nuevo-reclamo');
+            if (btnNuevoReclamo && form) {
+                btnNuevoReclamo.addEventListener('click', () => {
+                    let lastTime = 0;
+                    try {
+                        lastTime = parseInt(localStorage.getItem('totemin_rec_last_submit_time') || '0', 10);
+                    } catch (eStorage) { }
+                    const elapsed = Math.floor((Date.now() - lastTime) / 1000);
+                    const restante = 30 - elapsed;
+                    if (restante > 0) {
+                        alert(`Por favor, espere ${restante} segundo(s) antes de registrar una nueva reclamación.`);
+                        return;
+                    }
+
+                    form.reset();
+                    const alertaEspera = document.getElementById('rec-alerta-espera');
+                    if (alertaEspera) alertaEspera.style.display = 'none';
+                    form.style.display = 'block';
+                    if (boxExito) boxExito.style.display = 'none';
+                    if (btnEnviar) {
+                        btnEnviar.disabled = false;
+                        btnEnviar.innerText = 'Registrar y Enviar Hoja de Reclamación';
+                    }
+                    window.scrollTo({ top: form.offsetTop - 50, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

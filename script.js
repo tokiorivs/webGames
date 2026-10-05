@@ -4,35 +4,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Header scroll effect
     const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-            header.style.background = 'hsla(222, 47%, 8%, 0.95)';
-        } else {
-            header.style.boxShadow = 'none';
-            header.style.background = 'hsla(222, 47%, 8%, 0.8)';
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+                header.style.background = 'rgba(18, 19, 22, 0.95)';
+            } else {
+                header.style.boxShadow = 'none';
+                header.style.background = 'rgba(18, 19, 22, 0.8)';
+            }
+        });
+    }
 
     // 2. Intersection Observer for Scroll Animations (Anti-Gravity Motion)
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0.12
     };
 
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Optional: stop observing once it has appeared
                 obs.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Get elements to animate
-    const animElements = document.querySelectorAll('.card, .section-title, .section-subtitle, .cta-container, .feature-block, .step-card, .faq-item');
+    const animElements = document.querySelectorAll('.card, .section-title, .section-subtitle, .cta-container, .feature-block, .step-card, .faq-item, .simulator-card');
     animElements.forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
@@ -42,26 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            // Toggle active class (could add CSS for this)
+        if (question) {
+            question.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                if (answer) {
+                    const isVisible = answer.style.display === 'block';
+                    answer.style.display = isVisible ? 'none' : 'block';
+                    question.style.color = isVisible ? 'var(--text-primary)' : 'var(--primary)';
+                }
+            });
             const answer = item.querySelector('.faq-answer');
-            const isVisible = answer.style.display === 'block';
-            answer.style.display = isVisible ? 'none' : 'block';
-            question.style.color = isVisible ? 'var(--text-primary)' : 'var(--primary)';
-        });
-        // Hide answers by default
-        item.querySelector('.faq-answer').style.display = 'none';
+            if (answer) answer.style.display = 'none';
+        }
     });
 
-    // 4. Smooth scrolling for nav links
+    // 4. Smooth scrolling for internal anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (!targetId || targetId === '#') return;
 
             const targetEl = document.querySelector(targetId);
             if (targetEl) {
+                e.preventDefault();
                 targetEl.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -72,16 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Media Viewer Logic (Dynamic Image/Video Switching)
     const BASE_URL = "https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/";
-
     const mainMediaPlaceholder = document.getElementById('mainMediaPlaceholder');
     const mainMediaImage = document.getElementById('mainMediaImage');
     const thumbs = document.querySelectorAll('#thumbnailSlider .thumb');
 
     thumbs.forEach(thumb => {
         thumb.addEventListener('click', () => {
-            // Remove active class from all thumbs
             thumbs.forEach(t => t.classList.remove('active'));
-            // Add active class to clicked thumb
             thumb.classList.add('active');
 
             const type = thumb.getAttribute('data-type');
@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const videoIframe = document.getElementById('mainMediaVideo');
 
             if (type === 'video') {
-                // Show video iframe and autoplay
                 if (videoIframe) {
                     videoIframe.style.display = 'block';
                     const iframeSrc = videoIframe.src;
@@ -97,19 +96,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         videoIframe.src = iframeSrc + (iframeSrc.includes('?') ? '&' : '?') + 'autoplay=1';
                     }
                 }
-                mainMediaPlaceholder.style.display = 'none';
-                mainMediaImage.style.display = 'none';
+                if (mainMediaPlaceholder) mainMediaPlaceholder.style.display = 'none';
+                if (mainMediaImage) mainMediaImage.style.display = 'none';
             } else if (type === 'image') {
-                // Show image
                 if (videoIframe) {
                     videoIframe.style.display = 'none';
-                    // Stop video playback by resetting src
                     const iframeSrc = videoIframe.src;
                     videoIframe.src = iframeSrc.replace('&autoplay=1', '').replace('?autoplay=1', '');
                 }
-                mainMediaPlaceholder.style.display = 'none';
-                mainMediaImage.style.display = 'block';
-                mainMediaImage.src = BASE_URL + src;
+                if (mainMediaPlaceholder) mainMediaPlaceholder.style.display = 'none';
+                if (mainMediaImage) {
+                    mainMediaImage.style.display = 'block';
+                    mainMediaImage.src = BASE_URL + src;
+                }
             }
         });
     });
@@ -117,30 +116,129 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mainMediaPlaceholder) {
         mainMediaPlaceholder.addEventListener('click', () => {
             const videoThumb = document.querySelector('.thumb[data-type="video"]');
-            if (videoThumb) {
-                videoThumb.click();
-            }
+            if (videoThumb) videoThumb.click();
         });
     }
 
-    // 6. Contact Form Submission (Real Email Sending)
+    // 6. Interactive Roulette Simulator (Fase 3: Simulador en Vivo)
+    const wheelCanvas = document.getElementById('wheelCanvas');
+    const spinWheelBtn = document.getElementById('spinWheelBtn');
+    const wheelResultBox = document.getElementById('wheelResultBox');
+
+    if (wheelCanvas && spinWheelBtn) {
+        const ctx = wheelCanvas.getContext('2d');
+        const sectors = [
+            { label: 'Premio Estrella', color: '#8b5cf6' },
+            { label: 'Merchandising', color: '#10b981' },
+            { label: 'Descuento 20%', color: '#0ea5e9' },
+            { label: 'Gira de Nuevo', color: '#475569' },
+            { label: 'Pack Sorpresa', color: '#f59e0b' },
+            { label: 'Premio Premium', color: '#ec4899' }
+        ];
+
+        const numSectors = sectors.length;
+        const arc = (2 * Math.PI) / numSectors;
+        const size = wheelCanvas.width;
+        const radius = size / 2;
+
+        function drawWheel() {
+            ctx.clearRect(0, 0, size, size);
+
+            sectors.forEach((sector, i) => {
+                const angle = i * arc;
+
+                // Slice
+                ctx.beginPath();
+                ctx.fillStyle = sector.color;
+                ctx.moveTo(radius, radius);
+                ctx.arc(radius, radius, radius - 4, angle, angle + arc);
+                ctx.lineTo(radius, radius);
+                ctx.fill();
+
+                // Slice Border
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Text
+                ctx.save();
+                ctx.translate(radius, radius);
+                ctx.rotate(angle + arc / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 12px Geist, sans-serif';
+                ctx.shadowColor = 'rgba(0,0,0,0.6)';
+                ctx.shadowBlur = 4;
+                ctx.fillText(sector.label, radius - 20, 4);
+                ctx.restore();
+            });
+
+            // Outer decorative ring
+            ctx.beginPath();
+            ctx.arc(radius, radius, radius - 2, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#25D366';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        drawWheel();
+
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        spinWheelBtn.addEventListener('click', () => {
+            if (isSpinning) return;
+            isSpinning = true;
+            spinWheelBtn.disabled = true;
+            spinWheelBtn.innerText = 'Girando ruleta...';
+
+            if (wheelResultBox) {
+                wheelResultBox.innerHTML = '<span class="text-secondary" style="font-size: 0.85rem;">Calculando resultado con física táctil...</span>';
+            }
+
+            // Pick random additional rotation between 5 and 8 full turns (1800 - 2880 deg)
+            const extraDegrees = Math.floor(1800 + Math.random() * 1080);
+            currentRotation += extraDegrees;
+
+            wheelCanvas.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                isSpinning = false;
+                spinWheelBtn.disabled = false;
+                spinWheelBtn.innerText = '¡GIRAR OTRA VEZ!';
+
+                // The pointer is at top (270 degrees in canvas space or top 0)
+                // Total effective rotation modulo 360:
+                const actualDeg = currentRotation % 360;
+                // Since pointer is at top (offset by 270 deg or 90 deg counter):
+                const pointerAngle = (360 - actualDeg + 270) % 360;
+                const winningIndex = Math.floor(pointerAngle / (360 / numSectors)) % numSectors;
+                const winningPrize = sectors[winningIndex].label;
+
+                if (wheelResultBox) {
+                    wheelResultBox.innerHTML = `
+                        <div class="result-badge">
+                            🎉 ¡Resultado: ${winningPrize}! Así de adictivo es en tu stand.
+                        </div>
+                    `;
+                }
+            }, 4000);
+        });
+    }
+
+    // 7. Fast Quote Contact Form (4 Campos Clave)
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
 
-    if (contactForm) {
+    if (contactForm && submitBtn) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Basic UI Feedback
             const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = 'Enviando...';
+            submitBtn.innerText = 'Enviando solicitud...';
             submitBtn.disabled = true;
 
             const formData = new FormData(contactForm);
-
-            // Masking/Service Configuration
-            // Note: For extra spam protection, we are using a "Unique Key" 
-            // provided by FormSubmit instead of the naked email address.
             const formKey = "96c0b266757e4417dab8d571fb17ada6";
             const endpoint = `https://formsubmit.co/ajax/${formKey}`;
 
@@ -148,20 +246,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(endpoint, {
                     method: 'POST',
                     body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
 
                 if (response.ok) {
-                    alert('¡Gracias! Tu solicitud ha sido enviada. Nos pondremos en contacto contigo pronto.');
+                    alert('¡Solicitud enviada con éxito!\n\nRevisaremos los detalles de tu evento y te enviaremos la propuesta técnica y disponibilidad en menos de 2 horas hábiles.');
                     contactForm.reset();
                 } else {
-                    throw new Error('Error al enviar el formulario');
+                    throw new Error('Error al enviar la solicitud');
                 }
             } catch (error) {
                 console.error('Submission Error:', error);
-                alert('Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo o contáctanos por WhatsApp.');
+                alert('Hubo un problema temporal con el formulario. Por favor, contáctanos directamente a nuestro WhatsApp oficial para atenderte de inmediato.');
             } finally {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
