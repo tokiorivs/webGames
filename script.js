@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-                header.style.background = 'rgba(18, 19, 22, 0.95)';
+                header.style.background = 'rgba(10, 16, 25, 0.95)';
             } else {
                 header.style.boxShadow = 'none';
-                header.style.background = 'rgba(18, 19, 22, 0.8)';
+                header.style.background = 'rgba(10, 16, 25, 0.8)';
             }
         });
     }
@@ -129,12 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (wheelCanvas && spinWheelBtn) {
         const ctx = wheelCanvas.getContext('2d');
         const sectors = [
-            { label: 'Premio Estrella', color: '#8b5cf6' },
-            { label: 'Merchandising', color: '#10b981' },
-            { label: 'Descuento 20%', color: '#0ea5e9' },
-            { label: 'Gira de Nuevo', color: '#475569' },
-            { label: 'Pack Sorpresa', color: '#f59e0b' },
-            { label: 'Premio Premium', color: '#ec4899' }
+            { label: 'Premio Estrella', color: '#2563eb' },
+            { label: 'Merchandising', color: '#0f766e' },
+            { label: 'Descuento 20%', color: '#0284c7' },
+            { label: 'Gira de Nuevo', color: '#334155' },
+            { label: 'Pack Sorpresa', color: '#4d7c0f' },
+            { label: 'Premio Premium', color: '#4f46e5' }
         ];
 
         const numSectors = sectors.length;
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Outer decorative ring
             ctx.beginPath();
             ctx.arc(radius, radius, radius - 2, 0, 2 * Math.PI);
-            ctx.strokeStyle = '#25D366';
+            ctx.strokeStyle = '#9bf00b';
             ctx.lineWidth = 3;
             ctx.stroke();
         }
