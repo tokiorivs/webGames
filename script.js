@@ -429,3 +429,132 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
 })();
+
+/* ===== Partículas 3D del hero ===== */
+(function () {
+    var hero = document.querySelector('.hero-garage');
+    if (!hero || !window.requestAnimationFrame) return;
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canvas = document.createElement('canvas');
+    canvas.className = 'hero-particles';
+    canvas.setAttribute('aria-hidden', 'true');
+    hero.insertBefore(canvas, hero.firstChild);
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    var COLORS = [['155,240,11', 0.55], ['127,166,214', 0.35], ['255,255,255', 0.10]];
+    var W = 0, H = 0, dpr = 1, parts = [], running = false, visible = true, raf = 0, last = 0;
+    var px = 0.5, pm = 0.5; // posición del puntero (0..1) y su suavizado
+
+    function pickColor() {
+        var r = Math.random(), acc = 0;
+        for (var i = 0; i < COLORS.length; i++) { acc += COLORS[i][1]; if (r <= acc) return COLORS[i][0]; }
+        return COLORS[0][0];
+    }
+    function make(initial) {
+        var k = Math.random();
+        return {
+            x: Math.random() * 2.6 - 1.3,
+            y: initial ? Math.random() * 2.5 - 1.25 : 1.25,
+            z: Math.random(),
+            s: 0.4 + Math.random() * 0.9,
+            c: pickColor(),
+            kind: k < 0.68 ? 0 : (k < 0.9 ? 1 : 2),
+            ph: Math.random() * 6.283,
+            v: 0.5 + Math.random() * 0.8
+        };
+    }
+    function resize() {
+        var r = hero.getBoundingClientRect();
+        W = Math.max(1, r.width); H = Math.max(1, r.height);
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var n = Math.round(Math.min(150, Math.max(52, (W * H) / 8500)));
+        while (parts.length < n) parts.push(make(true));
+        parts.length = n;
+        if (!running) draw(0);
+    }
+
+    function project(p, t) {
+        var persp = 0.45 + (1 - p.z) * 0.95;                       // cerca = grande, lejos = pequeño
+        var sway = Math.sin(t * 0.0006 * p.v + p.ph) * 0.05;
+        var sx = W / 2 + (p.x + sway) * W * 0.5 * persp + (pm - 0.5) * 70 * (1 - p.z);
+        var sy = H / 2 + p.y * H * 0.5 * persp;
+        return { x: sx, y: sy, p: persp };
+    }
+
+    function draw(t) {
+        ctx.clearRect(0, 0, W, H);
+        var pts = [], i, j;
+        for (i = 0; i < parts.length; i++) {
+            var q = parts[i], pr = project(q, t);
+            pr.q = q;
+            pts.push(pr);
+        }
+        // líneas finas entre partículas cercanas (efecto red)
+        ctx.lineWidth = 1;
+        for (i = 0; i < pts.length; i++) {
+            if (pts[i].q.z > 0.7) continue;
+            for (j = i + 1; j < pts.length; j++) {
+                if (pts[j].q.z > 0.7) continue;
+                var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = Math.sqrt(dx * dx + dy * dy);
+                if (d < 110) {
+                    ctx.strokeStyle = 'rgba(' + pts[i].q.c + ',' + ((1 - d / 110) * 0.26).toFixed(3) + ')';
+                    ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+                }
+            }
+        }
+        // partículas
+        for (i = 0; i < pts.length; i++) {
+            var o = pts[i], p = o.q;
+            var side = Math.min(1, Math.max(0, (o.x / W - 0.1) / 0.5));       // menos densidad visual sobre el texto (izquierda)
+            var a = (0.38 + 0.57 * (1 - p.z)) * (0.55 + 0.45 * side);
+            var r = (1.5 + p.s * 2.1) * o.p;
+            var streak = (1 - p.z) * 34 * p.v;
+            ctx.fillStyle = 'rgba(' + p.c + ',' + a.toFixed(3) + ')';
+            ctx.strokeStyle = 'rgba(' + p.c + ',' + (a * 0.55).toFixed(3) + ')';
+            ctx.lineWidth = Math.max(0.6, r * 0.55);
+            ctx.beginPath(); ctx.moveTo(o.x, o.y + 1); ctx.lineTo(o.x, o.y + streak); ctx.stroke();   // estela hacia abajo
+            if (p.kind === 0) {
+                ctx.beginPath(); ctx.arc(o.x, o.y, r, 0, 6.283); ctx.fill();
+                if (p.z < 0.5) { ctx.fillStyle = 'rgba(' + p.c + ',' + (a * 0.2).toFixed(3) + ')'; ctx.beginPath(); ctx.arc(o.x, o.y, r * 3.2, 0, 6.283); ctx.fill(); }
+            } else if (p.kind === 1) {
+                ctx.fillRect(o.x - r, o.y - r, r * 2, r * 2);
+            } else {
+                var l = r * 2.2;
+                ctx.lineWidth = Math.max(0.8, r * 0.45);
+                ctx.strokeStyle = 'rgba(' + p.c + ',' + a.toFixed(3) + ')';
+                ctx.beginPath(); ctx.moveTo(o.x - l, o.y); ctx.lineTo(o.x + l, o.y); ctx.moveTo(o.x, o.y - l); ctx.lineTo(o.x, o.y + l); ctx.stroke();
+            }
+        }
+    }
+
+    function step(t) {
+        raf = 0;
+        if (!running) return;
+        var dt = Math.min(48, t - last || 16); last = t;
+        pm += (px - pm) * 0.04;
+        for (var i = 0; i < parts.length; i++) {
+            var q = parts[i];
+            q.y -= dt * 0.00017 * q.v * (0.35 + (1 - q.z) * 0.9);       // sube más rápido lo cercano (parallax)
+            if (q.y < -1.3) { var n = make(false); n.x = q.x * 0.3 + (Math.random() * 2.6 - 1.3) * 0.7; parts[i] = n; }
+        }
+        draw(t);
+        raf = requestAnimationFrame(step);
+    }
+    function start() { if (running || reduce || !visible || document.hidden) return; running = true; last = 0; raf = requestAnimationFrame(step); }
+    function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = 0; }
+
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) { visible = e[0].isIntersecting; visible ? start() : stop(); }, { threshold: 0.02 }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+    hero.addEventListener('pointermove', function (e) { var r = hero.getBoundingClientRect(); px = (e.clientX - r.left) / r.width; }, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(hero); else window.addEventListener('resize', resize);
+
+    resize();
+    draw(0);
+    start();
+})();
