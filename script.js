@@ -460,7 +460,8 @@ document.addEventListener('DOMContentLoaded', () => {
             z: Math.random(),
             s: 0.4 + Math.random() * 0.9,
             c: pickColor(),
-            kind: k < 0.68 ? 0 : (k < 0.9 ? 1 : 2),
+            kind: k < 0.58 ? 0 : (k < 0.7 ? 1 : 2),
+            g: Math.floor(Math.random() * 4),                 // símbolo: 0 triángulo, 1 círculo, 2 equis, 3 cuadrado
             ph: Math.random() * 6.283,
             v: 0.5 + Math.random() * 0.8
         };
@@ -483,6 +484,29 @@ document.addEventListener('DOMContentLoaded', () => {
         var sx = W / 2 + (p.x + sway) * W * 0.5 * persp + (pm - 0.5) * 70 * (1 - p.z);
         var sy = H / 2 + p.y * H * 0.5 * persp;
         return { x: sx, y: sy, p: persp };
+    }
+
+    // Símbolos genéricos de mando de consola: triángulo, círculo, equis y cuadrado (solo contorno)
+    function drawGlyph(g, x, y, l, ang, color, lw) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(ang);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lw;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        if (g === 0) {                       // triángulo
+            ctx.moveTo(0, -l); ctx.lineTo(l * 0.9, l * 0.7); ctx.lineTo(-l * 0.9, l * 0.7); ctx.closePath();
+        } else if (g === 1) {                // círculo
+            ctx.arc(0, 0, l * 0.85, 0, 6.283);
+        } else if (g === 2) {                // equis
+            ctx.moveTo(-l * 0.8, -l * 0.8); ctx.lineTo(l * 0.8, l * 0.8); ctx.moveTo(l * 0.8, -l * 0.8); ctx.lineTo(-l * 0.8, l * 0.8);
+        } else {                             // cuadrado
+            ctx.rect(-l * 0.75, -l * 0.75, l * 1.5, l * 1.5);
+        }
+        ctx.stroke();
+        ctx.restore();
     }
 
     function draw(t) {
@@ -523,10 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (p.kind === 1) {
                 ctx.fillRect(o.x - r, o.y - r, r * 2, r * 2);
             } else {
-                var l = r * 2.2;
-                ctx.lineWidth = Math.max(0.8, r * 0.45);
-                ctx.strokeStyle = 'rgba(' + p.c + ',' + a.toFixed(3) + ')';
-                ctx.beginPath(); ctx.moveTo(o.x - l, o.y); ctx.lineTo(o.x + l, o.y); ctx.moveTo(o.x, o.y - l); ctx.lineTo(o.x, o.y + l); ctx.stroke();
+                drawGlyph(p.g, o.x, o.y, r * 2.4, t * 0.0004 * p.v + p.ph, 'rgba(' + p.c + ',' + a.toFixed(3) + ')', Math.max(1, r * 0.5));
             }
         }
     }
