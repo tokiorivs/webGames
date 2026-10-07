@@ -2,38 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://totemin.cc/</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://totemin.cc/proceso</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://totemin.cc/articulo1</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://totemin.cc/libro-de-reclamaciones</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://totemin.cc/privacidad</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://totemin.cc/terminos-y-condiciones</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://totemin.cc/ruleta-digital</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://totemin.cc/trivia-interactiva</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://totemin.cc/juego-de-memoria</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://totemin.cc/meteor-rescue</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://totemin.cc/raspa-y-gana-digital</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://totemin.cc/penales</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 </urlset>

@@ -3483,3 +3483,34 @@ a {
 .cot-status { color: var(--primary); font-size: 0.88rem; margin: 0; }
 .cot-error[hidden], .cot-status[hidden] { display: none; }
 @media (max-width: 520px) { .cot-row { grid-template-columns: 1fr; } }
+
+/* ===== Páginas de juego ===== */
+.gp-h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.08; font-weight: 800; margin: 0 0 16px; letter-spacing: -0.02em; }
+.gp-section { padding: 56px 0; }
+.gp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 28px; }
+.gp-card { background: var(--surface-glass); border: 1px solid var(--surface-border); border-radius: var(--radius-md, 12px); padding: 20px; }
+.gp-card h3 { margin: 10px 0 6px; font-size: 1.02rem; }
+.gp-card p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+.gp-num { font-family: 'Geist Mono', monospace; font-size: 0.78rem; color: var(--primary); }
+.gp-two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.gp-left { text-align: left !important; }
+.gp-list { margin: 18px 0 0; padding-left: 20px; display: grid; gap: 8px; color: var(--text-secondary); line-height: 1.5; }
+.gp-ficha { margin: 18px 0 0; display: grid; gap: 10px; }
+.gp-ficha div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--surface-border); font-size: 0.92rem; }
+.gp-ficha dt { color: var(--text-secondary); }
+.gp-ficha dd { margin: 0; text-align: right; font-weight: 600; }
+.gp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 28px; }
+.gp-shot { margin: 0; }
+.gp-shot-ph { aspect-ratio: 9 / 16; max-height: 420px; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    gap: 6px; padding: 16px; border: 2px dashed var(--surface-border); border-radius: 12px; color: var(--text-secondary); font-size: 0.85rem; }
+.gp-shot-ph small { font-size: 0.72rem; opacity: 0.8; }
+.gp-shot img { width: 100%; height: auto; border-radius: 12px; display: block; }
+.gp-narrow { max-width: 760px; }
+.gp-faq { border: 1px solid var(--surface-border); border-radius: 10px; padding: 14px 16px; margin-top: 12px; background: var(--surface-glass); }
+.gp-faq summary { cursor: pointer; font-weight: 600; }
+.gp-faq p { margin: 10px 0 0; color: var(--text-secondary); line-height: 1.55; font-size: 0.92rem; }
+.gp-faq a { text-decoration: underline; color: inherit; }
+.gp-morelist { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
+.gp-more { padding: 10px 16px; border: 1px solid var(--surface-border); border-radius: 999px; color: var(--text-primary); text-decoration: none; font-size: 0.9rem; }
+.gp-more:hover { border-color: var(--primary); }
+@media (max-width: 760px) { .gp-two { grid-template-columns: 1fr; gap: 28px; } .gp-section { padding: 40px 0; } }

@@ -62,7 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = this.getAttribute('href');
             if (!targetId || targetId === '#') return;
 
-            const targetEl = document.querySelector(targetId);
+            let targetEl = null;
+            try { targetEl = document.querySelector(targetId); } catch (err) { targetEl = null; }
             if (targetEl) {
                 e.preventDefault();
                 targetEl.scrollIntoView({
