@@ -266,3 +266,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+/* ===== Aviso de cookies y carga condicional de Google Tag Manager ===== */
+(function () {
+    var GTM_ID = 'GTM-NKSKHJJS';
+    var KEY = 'totemin_cookies';
+
+    function getChoice() {
+        try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    }
+    function setChoice(v) {
+        try { localStorage.setItem(KEY, v); } catch (e) { /* sin almacenamiento: se vuelve a preguntar */ }
+    }
+    function loadGTM() {
+        if (window.__gtmLoaded) return;
+        window.__gtmLoaded = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+        document.head.appendChild(s);
+    }
+    function showBanner() {
+        var box = document.createElement('div');
+        box.className = 'cookie-banner';
+        box.setAttribute('role', 'dialog');
+        box.setAttribute('aria-label', 'Aviso de cookies');
+        box.innerHTML =
+            '<p>Uso cookies de analítica (Google Tag Manager) solo si lo aceptas, para medir las visitas del sitio. ' +
+            'Más información en la <a href="/privacidad#cookies">Política de Privacidad</a>.</p>' +
+            '<div class="cookie-actions">' +
+            '<button type="button" class="cookie-btn cookie-btn-secondary" data-choice="rejected">Rechazar</button>' +
+            '<button type="button" class="cookie-btn cookie-btn-primary" data-choice="accepted">Aceptar</button>' +
+            '</div>';
+        box.addEventListener('click', function (e) {
+            var c = e.target && e.target.getAttribute && e.target.getAttribute('data-choice');
+            if (!c) return;
+            setChoice(c);
+            if (c === 'accepted') loadGTM();
+            box.remove();
+        });
+        document.body.appendChild(box);
+    }
+
+    function init() {
+        var c = getChoice();
+        if (c === 'accepted') loadGTM();
+        else if (c !== 'rejected') showBanner();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+})();

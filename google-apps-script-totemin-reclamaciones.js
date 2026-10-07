@@ -7,7 +7,7 @@ const EMAIL_EMPRESA = "cesaroumeres@gmail.com";
 const EMAIL_BACKUP = "";
 
 // Razón social o denominación comercial para constancias oficiales de INDECOPI
-const RAZON_SOCIAL = "totemIn Studio - Servicios de Software y Dinámicas Interactivas";
+const RAZON_SOCIAL = "César Omar Palero Umeres (totemIn) - RUC 10431501321";
 const RUC_EMPRESA = "Servicios de Desarrollo de Software";
 const PREFIJO_CORRELATIVO = "TOTEM-" + new Date().getFullYear() + "-";
 
@@ -111,7 +111,7 @@ function doPost(e) {
     const apoderadoNumDoc = truncar(data.apoderadoNumDoc || "No aplica", 20);
     const telefono = truncar(data.telefono || "No especificado", 30);
     const email = truncar(data.email || "", 150);
-    const sede = truncar(data.sede || data.ciudad || "Evento Presencial Lima", 80);
+    const sede = truncar(data.sede || data.ciudad || "Evento Presencial", 80);
     const domicilio = truncar(data.domicilio || "No especificado", 250);
     const distrito = truncar(data.distrito || "No especificado", 100);
     const provincia = truncar(data.provincia || "No especificado", 100);
@@ -229,7 +229,7 @@ function doGet(e) {
 
 function enviarCorreoConstancia(datos) {
   const tipoLabel = datos.tipoRegistro === "QUEJA" ? "Queja" : "Reclamación";
-  const asunto = `Hoja de ${tipoLabel} N° ${datos.correlativo} - totemIn Studio`;
+  const asunto = `Hoja de ${tipoLabel} N° ${datos.correlativo} - totemIn`;
 
   const sNombre = escapeHtml(datos.nombre);
   const sTipoDoc = escapeHtml(datos.tipoDoc);
@@ -255,7 +255,7 @@ function enviarCorreoConstancia(datos) {
   const sDetalleHtml = escapeHtml(datos.detalle).replace(/\n/g, '<br>');
   const sPedidoHtml = escapeHtml(datos.pedido).replace(/\n/g, '<br>');
 
-  const plainText = `LIBRO DE RECLAMACIONES VIRTUAL - totemIn Studio
+  const plainText = `LIBRO DE RECLAMACIONES VIRTUAL - totemIn
 ${RAZON_SOCIAL}
 
 Estimado(a) ${datos.nombre}:
@@ -285,7 +285,7 @@ Contacto: ${EMAIL_EMPRESA}`;
   const htmlBody = `
   <div style="font-family: Arial, Helvetica, sans-serif; max-width: 680px; margin: 0 auto; border: 1px solid #334155; border-radius: 8px; overflow: hidden; background: #ffffff;">
     <div style="background-color: #0b1120; padding: 22px 26px; color: #ffffff; text-align: center; border-bottom: 3px solid #25D366;">
-      <h2 style="margin: 0 0 6px; font-size: 20px; letter-spacing: 0.5px; color: #25D366;">totemIn Studio</h2>
+      <h2 style="margin: 0 0 6px; font-size: 20px; letter-spacing: 0.5px; color: #25D366;">totemIn</h2>
       <p style="margin: 0; font-size: 13px; color: #94a3b8;">${RAZON_SOCIAL}</p>
       <div style="margin-top: 10px; display: inline-block; background: #1e293b; border: 1px solid #25D366; border-radius: 4px; padding: 4px 12px; font-size: 12px; font-weight: bold; color: #ffffff;">
         LIBRO DE RECLAMACIONES VIRTUAL (D.S. N° 011-2011-PCM / D.S. N° 101-2022-PCM)
@@ -391,9 +391,9 @@ Contacto: ${EMAIL_EMPRESA}`;
     <table class="header-table">
       <tr>
         <td style="vertical-align: top;">
-          <div class="empresa-title">totemIn Studio</div>
+          <div class="empresa-title">totemIn</div>
           <div class="empresa-sub">${RAZON_SOCIAL}</div>
-          <div class="empresa-sub">Desarrollo e Implementación de Dinámicas Interactivas para Tótems y Stands | Lima, Perú</div>
+          <div class="empresa-sub">Desarrollo e Implementación de Dinámicas Interactivas para Tótems y Stands | Arequipa, Perú</div>
         </td>
         <td style="text-align: right; vertical-align: top; width: 45%;">
           <div class="correlativo-box">

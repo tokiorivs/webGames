@@ -1,0 +1,50 @@
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Environment variables & secrets
+.env
+.env.local
+.env.*.local
+*.local
+config.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary and cache files
+*.tmp
+*.temp
+*.bak
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Dependencies & Build artifacts (if applicable)
+node_modules/
+dist/
+build/
+.cache/
+ux_ui.md
