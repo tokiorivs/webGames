@@ -2,14 +2,15 @@
 :root {
     /* Color Palette - 60-30-10 Rule */
     /* 60% Background */
-    --bg-primary: hsl(222, 47%, 11%);
-    /* Deep dark blue */
-    --bg-page: hsl(222, 47%, 8%);
+    --bg-primary: #16181d;
+    /* Superficie elevada (neutra) */
+    --bg-page: #121316;
+    /* Base única de la web (opción A: casi negro neutro) */
 
     /* 30% Surface/Secondary */
-    --surface: hsl(215, 25%, 27%);
-    --surface-glass: hsla(215, 25%, 27%, 0.4);
-    --surface-border: hsla(215, 30%, 50%, 0.2);
+    --surface: #2b2d34;
+    --surface-glass: rgba(255, 255, 255, 0.04);
+    --surface-border: rgba(255, 255, 255, 0.10);
 
     /* 10% Accent/Action */
     --primary: hsl(142, 70%, 49%);
@@ -20,7 +21,12 @@
 
     /* Semantic */
     --text-primary: hsl(0, 0%, 98%);
-    --text-secondary: hsl(215, 20%, 75%);
+    --text-secondary: #b4b7c0;
+    --text-muted: #a0a3ad;
+    --text-faint: #8a8d97;
+
+    /* Textura scanline (identidad de marca, estática) */
+    --scanline: var(--scanline);
 
     /* Grid & Spacing Multipliers (8pt system base) */
     --space-1: 0.5rem;
@@ -43,6 +49,12 @@
     --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     --font-serif: 'Instrument Serif', Georgia, serif;
     --font-family: var(--font-sans);
+    --fs-label: 0.75rem;
+    /* 12px: mínimo para etiquetas */
+    --fs-copy: 0.9375rem;
+    /* 15px: texto de lectura en tarjetas */
+    --fs-body: 1rem;
+    /* 16px: texto principal */
     --font-size-sm: 0.875rem;
     /* 14px */
     --font-size-base: 1rem;
@@ -307,7 +319,7 @@ a {
     font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.01em;
-    color: #8f9096;
+    color: var(--text-muted);
     transition: color 0.15s ease;
 }
 
@@ -351,6 +363,9 @@ a {
 
 /* --- Hero Section (bryangarage.dev Editorial & Stage Architecture) --- */
 .hero-garage {
+    background-image:
+        radial-gradient(60% 55% at 85% -10%, rgba(139, 92, 246, 0.16), transparent 70%),
+        radial-gradient(45% 40% at 5% 105%, rgba(37, 211, 102, 0.09), transparent 70%);
     position: relative;
     padding-top: calc(70px + clamp(28px, 4vh, 48px));
     padding-bottom: clamp(40px, 6vh, 64px);
@@ -364,7 +379,7 @@ a {
 .hero-garage::after {
     content: "";
     pointer-events: none;
-    background: repeating-linear-gradient(rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px);
+    background: var(--scanline);
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -402,10 +417,10 @@ a {
 
 .hero-kicker {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #8f9096;
+    color: var(--text-muted);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -466,10 +481,10 @@ a {
 }
 
 .hero-note {
-    color: #8f9096;
+    color: var(--text-muted);
     max-width: 54ch;
     margin: 0 0 28px;
-    font-size: 14.5px;
+    font-size: var(--fs-body);
     line-height: 1.6;
     letter-spacing: -0.005em;
 }
@@ -493,10 +508,10 @@ a {
 
 .hero-meta {
     font-family: var(--font-mono);
-    color: #8f9096;
+    color: var(--text-muted);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: var(--fs-label);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -539,7 +554,7 @@ a {
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: var(--fs-label);
     color: var(--primary);
     background: transparent;
     border: none;
@@ -569,8 +584,8 @@ a {
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    font-size: 11px;
-    color: #8f9096;
+    font-size: var(--fs-label);
+    color: var(--text-muted);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -610,7 +625,7 @@ a {
 
 .hero-signoff-badge {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     color: #555861;
     letter-spacing: 0.05em;
 }
@@ -633,10 +648,10 @@ a {
     justify-content: space-between;
     align-items: center;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #8f9096;
+    color: var(--text-muted);
 }
 
 .stage-tag {
@@ -654,7 +669,7 @@ a {
 
 .stage-status-ok {
     color: var(--primary);
-    font-size: 10px;
+    font-size: var(--fs-label);
 }
 
 .hero-stage-body {
@@ -688,7 +703,7 @@ a {
 
 .spec-kicker {
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--primary);
@@ -707,9 +722,9 @@ a {
 
 .spec-desc {
     font-family: var(--font-sans);
-    font-size: 13px;
+    font-size: 0.875rem;
     line-height: 1.5;
-    color: #8f9096;
+    color: var(--text-muted);
     margin: 0;
 }
 
@@ -835,8 +850,8 @@ a {
 
 .ticker-label {
     font-family: var(--font-mono);
-    font-size: 11px;
-    color: #8f9096;
+    font-size: var(--fs-label);
+    color: var(--text-muted);
     letter-spacing: 0.05em;
     text-transform: uppercase;
     flex-shrink: 0;
@@ -847,7 +862,7 @@ a {
     align-items: center;
     gap: 16px;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.7);
@@ -861,7 +876,7 @@ a {
 
 .ticker-icon {
     color: var(--primary);
-    font-size: 10px;
+    font-size: var(--fs-label);
 }
 
 /* Responsive Breakpoints for Hero */
@@ -944,7 +959,7 @@ a {
 
 .card-desc {
     color: var(--text-secondary);
-    font-size: var(--font-size-sm);
+    font-size: var(--fs-copy);
 }
 
 /* Games Section */
@@ -1008,7 +1023,7 @@ a {
 }
 
 .game-meta {
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     color: var(--text-secondary);
     margin-bottom: var(--space-2);
     font-weight: 600;
@@ -1053,7 +1068,7 @@ a {
 .form-group textarea {
     width: 100%;
     padding: var(--space-2);
-    background: hsla(222, 47%, 8%, 0.5);
+    background: rgba(18, 19, 22, 0.5);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-sm);
     color: var(--text-primary);
@@ -1297,8 +1312,8 @@ a {
 }
 
 .game-short-desc {
-    color: #8f9096;
-    font-size: 14px;
+    color: var(--text-muted);
+    font-size: var(--fs-copy);
     line-height: 1.6;
     margin-bottom: var(--space-4);
 }
@@ -1323,8 +1338,8 @@ a {
 
 .spec-label {
     font-family: var(--font-mono);
-    color: #8f9096;
-    font-size: 11px;
+    color: var(--text-muted);
+    font-size: var(--fs-label);
     letter-spacing: 0.05em;
     font-weight: 500;
     text-transform: uppercase;
@@ -1358,8 +1373,8 @@ a {
 
 .tags-label {
     font-family: var(--font-mono);
-    color: #8f9096;
-    font-size: 11px;
+    color: var(--text-muted);
+    font-size: var(--fs-label);
     letter-spacing: 0.04em;
     font-weight: 500;
     text-transform: uppercase;
@@ -1378,7 +1393,7 @@ a {
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 4px 10px;
     border-radius: 9999px;
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.03em;
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -1558,7 +1573,7 @@ a {
     position: absolute;
     bottom: var(--space-3);
     right: var(--space-3);
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     color: var(--primary);
     letter-spacing: 1px;
@@ -1762,7 +1777,7 @@ a {
     color: var(--primary);
     padding: 2px 10px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     font-weight: 600;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -1788,7 +1803,7 @@ a {
 .footer {
     border-top: 1px solid var(--surface-border);
     padding: var(--space-8) 0 var(--space-4) 0;
-    background: hsla(222, 47%, 6%, 0.95);
+    background: rgba(14, 15, 18, 0.95);
     margin-top: var(--space-12);
 }
 
@@ -1865,7 +1880,7 @@ a {
 }
 
 .footer-bottom {
-    border-top: 1px solid hsla(215, 30%, 50%, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding-top: var(--space-4);
     text-align: center;
 }
@@ -1920,7 +1935,7 @@ a {
 }
 
 .legal-date-tag {
-    background: hsla(215, 25%, 27%, 0.5);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-secondary);
     border: 1px solid var(--surface-border);
 }
@@ -1974,7 +1989,7 @@ a {
 .legal-bullets {
     padding-left: var(--space-4);
     color: var(--text-secondary);
-    font-size: var(--font-size-sm);
+    font-size: var(--fs-copy);
     margin-bottom: var(--space-3);
 }
 
@@ -1985,7 +2000,7 @@ a {
 
 /* Disclaimer Grid */
 .alert-box-legal {
-    background: hsla(215, 30%, 15%, 0.6);
+    background: rgba(30, 32, 38, 0.6);
     border: 1px solid hsla(142, 70%, 49%, 0.3);
     padding: var(--space-4);
     border-radius: var(--radius-md);
@@ -2005,7 +2020,7 @@ a {
 }
 
 .disclaimer-item {
-    background: hsla(222, 47%, 8%, 0.7);
+    background: rgba(18, 19, 22, 0.7);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-sm);
     padding: var(--space-3);
@@ -2017,7 +2032,7 @@ a {
     background: hsla(142, 70%, 49%, 0.15);
     color: var(--primary);
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     letter-spacing: 0.5px;
     margin-bottom: var(--space-2);
@@ -2038,7 +2053,7 @@ a {
 }
 
 .term-step-card {
-    background: hsla(222, 47%, 8%, 0.6);
+    background: rgba(18, 19, 22, 0.6);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-md);
     padding: var(--space-3);
@@ -2051,7 +2066,7 @@ a {
     color: #fff;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     margin-bottom: var(--space-1);
 }
@@ -2075,7 +2090,7 @@ a {
     flex-wrap: wrap;
     gap: var(--space-2);
     padding: var(--space-2) var(--space-3);
-    background: hsla(222, 47%, 8%, 0.8);
+    background: rgba(18, 19, 22, 0.8);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-sm);
     margin-bottom: var(--space-4);
@@ -2101,7 +2116,7 @@ a {
     border-radius: var(--radius-md);
     padding: var(--space-4);
     margin-bottom: var(--space-4);
-    background: hsla(222, 47%, 9%, 0.4);
+    background: rgba(20, 21, 25, 0.4);
 }
 
 .form-fieldset legend {
@@ -2139,7 +2154,7 @@ a {
 .form-select {
     width: 100%;
     padding: var(--space-2);
-    background: hsla(222, 47%, 8%, 0.9);
+    background: rgba(18, 19, 22, 0.9);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-sm);
     color: var(--text-primary);
@@ -2180,7 +2195,7 @@ a {
     display: flex;
     align-items: flex-start;
     gap: var(--space-2);
-    background: hsla(222, 47%, 8%, 0.6);
+    background: rgba(18, 19, 22, 0.6);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-sm);
     padding: var(--space-3);
@@ -2201,13 +2216,13 @@ a {
 }
 
 .radio-card-content p {
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     color: var(--text-secondary);
     margin: 0;
 }
 
 .legal-notice-box {
-    background: hsla(222, 47%, 7%, 0.8);
+    background: rgba(16, 17, 20, 0.8);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-sm);
     padding: var(--space-3);
@@ -2322,7 +2337,7 @@ a {
    SIMULADOR INTERACTIVO EN VIVO (Ruleta & Live Mechanics)
    ========================================================= */
 .live-simulator-section {
-    background: linear-gradient(180deg, var(--bg-page) 0%, hsla(222, 47%, 6%, 0.95) 100%);
+    background: linear-gradient(180deg, var(--bg-page) 0%, rgba(14, 15, 18, 0.95) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -2406,7 +2421,7 @@ a {
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     text-align: center;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
@@ -2454,7 +2469,7 @@ a {
     color: #f87171;
     border: 1px solid rgba(239, 68, 68, 0.3);
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     letter-spacing: 0.5px;
     width: fit-content;
@@ -2480,7 +2495,7 @@ a {
 
 .simulator-desc {
     color: var(--text-secondary);
-    font-size: var(--font-size-sm);
+    font-size: var(--fs-copy);
     line-height: 1.6;
 }
 
@@ -2539,7 +2554,7 @@ a {
 .subpage-hero::after {
     content: "";
     pointer-events: none;
-    background: repeating-linear-gradient(rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px);
+    background: var(--scanline);
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -2560,10 +2575,10 @@ a {
 
 .logos-kicker {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #5e6068;
+    color: var(--text-faint);
     text-align: center;
     margin-bottom: 18px;
 }
@@ -2581,7 +2596,7 @@ a {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.06em;
-    color: #8f9096;
+    color: var(--text-muted);
     background: #16181d;
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 7px 18px;
@@ -2621,7 +2636,7 @@ a {
 
 .feature-tag-mono {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--primary);
@@ -2643,8 +2658,8 @@ a {
 
 .feature-desc-garage {
     font-family: var(--font-sans);
-    color: #8f9096;
-    font-size: 15px;
+    color: var(--text-muted);
+    font-size: var(--fs-body);
     line-height: 1.7;
     margin-bottom: 20px;
 }
@@ -2659,7 +2674,7 @@ a {
 
 .feature-bullets-garage li {
     font-family: var(--font-sans);
-    font-size: 14px;
+    font-size: var(--fs-copy);
     color: #c4c5cc;
     display: flex;
     align-items: center;
@@ -2694,7 +2709,7 @@ a {
     bottom: 14px;
     right: 14px;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #ffffff;
@@ -2715,7 +2730,7 @@ a {
 
 .section-kicker-center {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--primary);
@@ -2735,8 +2750,8 @@ a {
 
 .section-desc-center {
     font-family: var(--font-sans);
-    color: #8f9096;
-    font-size: 15px;
+    color: var(--text-muted);
+    font-size: var(--fs-body);
     text-align: center;
     max-width: 600px;
     margin: 0 auto clamp(32px, 5vh, 48px);
@@ -2796,7 +2811,7 @@ a {
 
 .step-fase-badge {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--primary);
@@ -2817,8 +2832,8 @@ a {
 
 .step-desc-garage {
     font-family: var(--font-sans);
-    font-size: 13.5px;
-    color: #8f9096;
+    font-size: var(--fs-copy);
+    color: var(--text-muted);
     line-height: 1.6;
 }
 
@@ -2869,8 +2884,8 @@ a {
 
 .faq-body-garage {
     font-family: var(--font-sans);
-    color: #8f9096;
-    font-size: 14px;
+    color: var(--text-muted);
+    font-size: var(--fs-copy);
     line-height: 1.65;
     margin-top: 10px;
     padding-top: 10px;
@@ -2898,7 +2913,7 @@ a {
 .cta-box-garage::after {
     content: "";
     pointer-events: none;
-    background: repeating-linear-gradient(rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px);
+    background: var(--scanline);
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -2932,10 +2947,10 @@ a {
 
 .article-tag-garage {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #8f9096;
+    color: var(--text-muted);
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 3px 10px;
@@ -2954,10 +2969,10 @@ a {
 
 .article-meta-garage {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #5e6068;
+    color: var(--text-faint);
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -2990,7 +3005,7 @@ a {
     bottom: 12px;
     right: 12px;
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #ffffff;
@@ -3078,7 +3093,7 @@ a {
 
 .rule-code {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--primary);
@@ -3096,7 +3111,7 @@ a {
 
 .rule-desc {
     font-size: 13px;
-    color: #8f9096;
+    color: var(--text-muted);
     line-height: 1.5;
     margin: 0;
 }
@@ -3150,8 +3165,8 @@ a {
 
 .author-meta p {
     font-family: var(--font-mono);
-    font-size: 11px;
-    color: #8f9096;
+    font-size: var(--fs-label);
+    color: var(--text-muted);
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -3182,7 +3197,7 @@ a {
 
 .legal-subtitle-garage {
     font-family: var(--font-sans);
-    color: #8f9096;
+    color: var(--text-muted);
     font-size: 14.5px;
     line-height: 1.6;
     margin-bottom: 18px;
@@ -3232,7 +3247,7 @@ a {
 .legal-p-garage {
     font-family: var(--font-sans);
     color: #9da0aa;
-    font-size: 14.5px;
+    font-size: var(--fs-copy);
     line-height: 1.7;
     margin-bottom: 12px;
 }
@@ -3265,7 +3280,7 @@ a {
 
 .reclamaciones-form-garage .form-fieldset legend {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--primary);
@@ -3361,10 +3376,10 @@ a {
 
 .footer-col-garage .footer-heading {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--fs-label);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #8f9096;
+    color: var(--text-muted);
     font-weight: 600;
     margin-bottom: 14px;
 }
@@ -3379,7 +3394,7 @@ a {
 .footer-col-garage .footer-links a {
     font-family: var(--font-sans);
     font-size: 14px;
-    color: #8f9096;
+    color: var(--text-muted);
     transition: color 0.15s ease;
 }
 
@@ -3391,8 +3406,8 @@ a {
 
 .footer-bio-garage {
     font-family: var(--font-sans);
-    font-size: 13.5px;
-    color: #8f9096;
+    font-size: 0.875rem;
+    color: var(--text-muted);
     line-height: 1.6;
     margin-top: 12px;
     max-width: 360px;
@@ -3408,7 +3423,7 @@ a {
     gap: 12px;
     font-family: var(--font-mono);
     font-size: 12px;
-    color: #5e6068;
+    color: var(--text-faint);
 }
 /* ===== Aviso de cookies ===== */
 .cookie-banner {
@@ -3470,7 +3485,7 @@ a {
 .cot-hint, .cot-foot { font-size: 0.78rem; color: var(--text-secondary); margin: 10px 0 0; line-height: 1.4; }
 .cot-foot { text-align: center; }
 .cot-resumen { white-space: pre-wrap; font-family: 'Geist Mono', monospace; font-size: 0.82rem; line-height: 1.55; padding: 14px;
-    background: hsla(222, 47%, 8%, 0.9); border: 1px solid var(--surface-border); border-radius: var(--radius-sm); color: var(--text-primary); margin: 0 0 12px; }
+    background: rgba(18, 19, 22, 0.9); border: 1px solid var(--surface-border); border-radius: var(--radius-sm); color: var(--text-primary); margin: 0 0 12px; }
 .cot-consent { display: flex; gap: 8px; align-items: flex-start; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 14px; }
 .cot-consent input { margin-top: 3px; }
 .cot-consent a { text-decoration: underline; color: inherit; }
@@ -3503,7 +3518,7 @@ a {
 .gp-shot { margin: 0; }
 .gp-shot-ph { aspect-ratio: 9 / 16; max-height: 420px; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
     gap: 6px; padding: 16px; border: 2px dashed var(--surface-border); border-radius: 12px; color: var(--text-secondary); font-size: 0.85rem; }
-.gp-shot-ph small { font-size: 0.72rem; opacity: 0.8; }
+.gp-shot-ph small { font-size: var(--fs-label); opacity: 0.8; }
 .gp-shot img { width: 100%; height: auto; border-radius: 12px; display: block; }
 .gp-narrow { max-width: 760px; }
 .gp-faq { border: 1px solid var(--surface-border); border-radius: 10px; padding: 14px 16px; margin-top: 12px; background: var(--surface-glass); }
@@ -3518,7 +3533,7 @@ a {
 /* ===== Menú de juegos ===== */
 .nav-dropdown { position: relative; display: flex; align-items: center; }
 .nav-dd-btn { background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
-.nav-caret { font-size: 10px; transition: transform .15s ease; }
+.nav-caret { font-size: var(--fs-label); transition: transform .15s ease; }
 .nav-dropdown.open .nav-caret { transform: rotate(180deg); }
 .nav-dd-menu { display: none; position: absolute; top: 100%; left: -12px; min-width: 240px; margin-top: 14px; padding: 8px;
     background: rgba(18, 19, 22, 0.97); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5); z-index: 120; }
@@ -3547,4 +3562,23 @@ a {
     .header.nav-open .nav-dropdown.open:hover .nav-dd-menu { display: block; }
     .nav-dd-menu::before { display: none; }
     .nav-link.active::after { display: none; }
+}
+
+/* ===== Iconos SVG ===== */
+.card-icon svg { width: 34px; height: 34px; color: var(--primary); display: block; }
+.game-visual svg { width: 76px; height: 76px; color: #ffffff; stroke-width: 1.4; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25)); }
+.hero-kicker-num svg { width: 16px; height: 16px; display: block; }
+
+/* ===== Confianza y CTA móvil ===== */
+.trust-section { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.trust-grid { grid-template-columns: 1fr; }
+@media (min-width: 900px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
+.mobile-cta { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 90; display: none; justify-content: center; align-items: center;
+    padding: 14px 20px; border-radius: 999px; background: var(--primary); color: #0b1220; font-weight: 700; font-size: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45); transition: transform .2s ease, opacity .2s ease; }
+.mobile-cta.is-hidden { transform: translateY(140%); opacity: 0; pointer-events: none; }
+@media (max-width: 767px) {
+    .mobile-cta { display: flex; }
+    body:has(.cookie-banner) .mobile-cta { display: none; }
+    .footer-garage { padding-bottom: 88px; }
 }

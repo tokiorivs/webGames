@@ -513,3 +513,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
 })();
+
+/* ===== CTA móvil fijo ===== */
+(function () {
+    var skip = /\/(privacidad|terminos-y-condiciones|libro-de-reclamaciones)(\/|$)/.test(window.location.pathname);
+    if (skip) return;
+    function init() {
+        var a = document.createElement('a');
+        a.className = 'mobile-cta';
+        a.href = '/#cotizador';
+        a.textContent = 'Cotizar mi evento';
+        document.body.appendChild(a);
+        var target = document.getElementById('cotizador');
+        if (target && 'IntersectionObserver' in window) {
+            a.href = '#cotizador';
+            new IntersectionObserver(function (entries) {
+                a.classList.toggle('is-hidden', entries[0].isIntersecting);
+            }, { threshold: 0.15 }).observe(target);
+        }
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+})();
