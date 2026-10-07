@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const animElements = document.querySelectorAll('.card, .section-title, .section-subtitle, .cta-container, .feature-block, .step-card, .faq-item, .simulator-card');
+    const animElements = document.querySelectorAll('.card, .section-title, .section-subtitle, .cta-container, .feature-block, .step-card, .faq-item');
     animElements.forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
@@ -118,112 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mainMediaPlaceholder.addEventListener('click', () => {
             const videoThumb = document.querySelector('.thumb[data-type="video"]');
             if (videoThumb) videoThumb.click();
-        });
-    }
-
-    // 6. Interactive Roulette Simulator (Fase 3: Simulador en Vivo)
-    const wheelCanvas = document.getElementById('wheelCanvas');
-    const spinWheelBtn = document.getElementById('spinWheelBtn');
-    const wheelResultBox = document.getElementById('wheelResultBox');
-
-    if (wheelCanvas && spinWheelBtn) {
-        const ctx = wheelCanvas.getContext('2d');
-        const sectors = [
-            { label: 'Premio Estrella', color: '#2563eb' },
-            { label: 'Merchandising', color: '#0f766e' },
-            { label: 'Descuento 20%', color: '#0284c7' },
-            { label: 'Gira de Nuevo', color: '#334155' },
-            { label: 'Pack Sorpresa', color: '#4d7c0f' },
-            { label: 'Premio Premium', color: '#4f46e5' }
-        ];
-
-        const numSectors = sectors.length;
-        const arc = (2 * Math.PI) / numSectors;
-        const size = wheelCanvas.width;
-        const radius = size / 2;
-
-        function drawWheel() {
-            ctx.clearRect(0, 0, size, size);
-
-            sectors.forEach((sector, i) => {
-                const angle = i * arc;
-
-                // Slice
-                ctx.beginPath();
-                ctx.fillStyle = sector.color;
-                ctx.moveTo(radius, radius);
-                ctx.arc(radius, radius, radius - 4, angle, angle + arc);
-                ctx.lineTo(radius, radius);
-                ctx.fill();
-
-                // Slice Border
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-
-                // Text
-                ctx.save();
-                ctx.translate(radius, radius);
-                ctx.rotate(angle + arc / 2);
-                ctx.textAlign = 'right';
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 12px Geist, sans-serif';
-                ctx.shadowColor = 'rgba(0,0,0,0.6)';
-                ctx.shadowBlur = 4;
-                ctx.fillText(sector.label, radius - 20, 4);
-                ctx.restore();
-            });
-
-            // Outer decorative ring
-            ctx.beginPath();
-            ctx.arc(radius, radius, radius - 2, 0, 2 * Math.PI);
-            ctx.strokeStyle = '#9bf00b';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-        }
-
-        drawWheel();
-
-        let isSpinning = false;
-        let currentRotation = 0;
-
-        spinWheelBtn.addEventListener('click', () => {
-            if (isSpinning) return;
-            isSpinning = true;
-            spinWheelBtn.disabled = true;
-            spinWheelBtn.innerText = 'Girando ruleta...';
-
-            if (wheelResultBox) {
-                wheelResultBox.innerHTML = '<span class="text-secondary" style="font-size: 0.85rem;">Calculando resultado con física táctil...</span>';
-            }
-
-            // Pick random additional rotation between 5 and 8 full turns (1800 - 2880 deg)
-            const extraDegrees = Math.floor(1800 + Math.random() * 1080);
-            currentRotation += extraDegrees;
-
-            wheelCanvas.style.transform = `rotate(${currentRotation}deg)`;
-
-            setTimeout(() => {
-                isSpinning = false;
-                spinWheelBtn.disabled = false;
-                spinWheelBtn.innerText = '¡GIRAR OTRA VEZ!';
-
-                // The pointer is at top (270 degrees in canvas space or top 0)
-                // Total effective rotation modulo 360:
-                const actualDeg = currentRotation % 360;
-                // Since pointer is at top (offset by 270 deg or 90 deg counter):
-                const pointerAngle = (360 - actualDeg + 270) % 360;
-                const winningIndex = Math.floor(pointerAngle / (360 / numSectors)) % numSectors;
-                const winningPrize = sectors[winningIndex].label;
-
-                if (wheelResultBox) {
-                    wheelResultBox.innerHTML = `
-                        <div class="result-badge">
-                            🎉 ¡Resultado: ${winningPrize}! Así de adictivo es en tu stand.
-                        </div>
-                    `;
-                }
-            }, 4000);
         });
     }
 
