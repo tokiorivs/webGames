@@ -186,7 +186,7 @@
                             <div class="totem-mockup">
                                 <div class="totem-camera-dot"></div>
                                 <div class="totem-screen">
-                                    <video class="mockup-video" autoplay muted loop playsinline>
+                                    <video class="mockup-video" autoplay muted loop playsinline preload="metadata" poster="video/totem-juego.png">
                                         <source src="video/Timeline 1.mp4" type="video/mp4">
                                     </video>
                                     <div class="totem-scanlines"></div>
@@ -506,6 +506,7 @@
                     <button type="submit" id="submitBtn" class="btn btn-primary btn-large btn-block" style="margin-top: var(--space-2);">
                         Solicitar Propuesta y Disponibilidad
                     </button>
+                    <p id="formStatus" role="status" aria-live="polite" style="display: none; font-size: 0.85rem; text-align: center; margin-top: 10px;"></p>
                     <label style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.78rem; color: var(--text-secondary); margin-top: 12px; line-height: 1.4;">
                         <input type="checkbox" id="consent_datos" name="consent_datos" value="Acepto" required style="margin-top: 3px;">
                         <span>Acepto que César Palero (totemIn) use estos datos solo para responder mi consulta, según la <a href="/privacidad" style="text-decoration: underline;">Política de Privacidad</a> (Ley N° 29733).</span>

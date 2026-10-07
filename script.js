@@ -229,6 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7. Fast Quote Contact Form (4 Campos Clave)
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+
+    function showFormStatus(msg, ok) {
+        if (!formStatus) return;
+        formStatus.textContent = msg;
+        formStatus.style.color = ok ? 'var(--primary)' : '#f87171';
+        formStatus.style.display = 'block';
+    }
 
     if (contactForm && submitBtn) {
         contactForm.addEventListener('submit', async (e) => {
@@ -250,14 +258,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('¡Solicitud enviada con éxito!\n\nRevisaremos los detalles de tu evento y te enviaremos la propuesta técnica y disponibilidad en menos de 2 horas hábiles.');
+                    showFormStatus('¡Solicitud enviada! Revisaré los detalles de tu evento y te responderé por WhatsApp o correo en horario de atención (8:00 a. m. a 6:00 p. m.).', true);
                     contactForm.reset();
                 } else {
                     throw new Error('Error al enviar la solicitud');
                 }
             } catch (error) {
                 console.error('Submission Error:', error);
-                alert('Hubo un problema temporal con el formulario. Por favor, contáctanos directamente a nuestro WhatsApp oficial para atenderte de inmediato.');
+                showFormStatus('Hubo un problema temporal con el formulario. Escríbeme directamente por WhatsApp y te atiendo.', false);
             } finally {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
