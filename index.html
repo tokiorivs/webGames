@@ -471,49 +471,124 @@
         </section>
 
         <!-- Fast Quote CTA Section (4 campos clave) -->
-        <section id="contacto" class="section cta-section">
+        <section id="cotizador" class="section cta-section">
             <div class="container cta-container">
                 <div class="cta-content">
                     <h2 class="section-title">Cotiza la Dinámica para tu Próximo Evento</h2>
                     <p class="cta-desc">
-                        Completa estos 4 datos y te contactaré con una propuesta técnica, disponibilidad y presupuesto
-                        para tu stand o activación.
+                        Responde unas preguntas rápidas y se armará tu solicitud lista para enviar por WhatsApp o correo.
+                        Así puedo prepararte una propuesta técnica y una cotización más precisa.
                     </p>
                 </div>
-                <form id="contactForm" class="contact-form">
-                    <div class="quick-quote-form">
-                        <div class="form-group">
-                            <label for="empresa">1. Empresa o Agencia *</label>
-                            <input type="text" id="empresa" name="empresa" required placeholder="Ej. Agencia Creativa SAC / Marca" />
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha_evento">2. Fecha estimada del evento *</label>
-                            <input type="text" id="fecha_evento" name="fecha_evento" required placeholder="Ej. 15 de Noviembre / En 2 semanas" />
-                        </div>
-                        <div class="form-group">
-                            <label for="formato_pantalla">3. Formato de Pantalla *</label>
-                            <select id="formato_pantalla" name="formato_pantalla" class="form-select" required>
-                                <option value="Tótem Vertical (9:16)">Tótem Vertical (9:16)</option>
-                                <option value="Pantalla Horizontal (16:9)">Pantalla Horizontal (16:9)</option>
-                                <option value="Por definir / Asesoría técnica">Por definir / Requiero asesoría</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contacto_lead">4. Correo Corporativo o WhatsApp *</label>
-                            <input type="text" id="contacto_lead" name="contacto_lead" required placeholder="nombre@empresa.com o +51 999..." />
-                        </div>
+                <form id="cotizadorForm" class="cotizador" novalidate>
+                    <div class="cot-progress" aria-live="polite">
+                        <span id="cotStepLabel">Paso 1 de 8</span>
+                        <div class="cot-bar"><i id="cotBarFill"></i></div>
                     </div>
-                    <button type="submit" id="submitBtn" class="btn btn-primary btn-large btn-block" style="margin-top: var(--space-2);">
-                        Solicitar Propuesta y Disponibilidad
-                    </button>
-                    <p id="formStatus" role="status" aria-live="polite" style="display: none; font-size: 0.85rem; text-align: center; margin-top: 10px;"></p>
-                    <label style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.78rem; color: var(--text-secondary); margin-top: 12px; line-height: 1.4;">
-                        <input type="checkbox" id="consent_datos" name="consent_datos" value="Acepto" required style="margin-top: 3px;">
-                        <span>Acepto que César Palero (totemIn) use estos datos solo para responder mi consulta, según la <a href="/privacidad" style="text-decoration: underline;">Política de Privacidad</a> (Ley N° 29733).</span>
-                    </label>
-                    <p style="font-size: 0.75rem; color: var(--text-secondary); text-align: center; margin-top: 8px;">
-                        Atención por WhatsApp de 8:00 a. m. a 6:00 p. m. (hora de Perú).
-                    </p>
+
+                    <fieldset class="cot-step" data-step="1">
+                        <legend>¿Qué juego(s) te interesan? <small>Puedes elegir varios</small></legend>
+                        <div class="cot-chips" data-name="juegos" data-multi="1">
+                            <button type="button" class="cot-chip" data-value="Ruleta Digital" data-key="ruleta" aria-pressed="false">Ruleta Digital</button>
+                            <button type="button" class="cot-chip" data-value="Trivia" data-key="trivia" aria-pressed="false">Trivia</button>
+                            <button type="button" class="cot-chip" data-value="Juego de Memoria" data-key="memoria" aria-pressed="false">Juego de Memoria</button>
+                            <button type="button" class="cot-chip" data-value="Meteor Rescue (Reflejos)" data-key="reflejos" aria-pressed="false">Meteor Rescue (Reflejos)</button>
+                            <button type="button" class="cot-chip" data-value="Raspa y Gana" data-key="raspa" aria-pressed="false">Raspa y Gana</button>
+                            <button type="button" class="cot-chip" data-value="Penales" data-key="penales" aria-pressed="false">Penales</button>
+                            <button type="button" class="cot-chip" data-value="Otro juego a medida" data-key="medida" aria-pressed="false">Otro juego a medida</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cot-step" data-step="2" hidden>
+                        <legend>¿En qué equipo se usará?</legend>
+                        <div class="cot-chips" data-name="equipo">
+                            <button type="button" class="cot-chip" data-value="Windows" aria-pressed="false">Windows</button>
+                            <button type="button" class="cot-chip" data-value="Android" aria-pressed="false">Android</button>
+                            <button type="button" class="cot-chip" data-value="Aún no lo sé" aria-pressed="false">Aún no lo sé</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cot-step" data-step="3" hidden>
+                        <legend>¿Qué pantalla tendrá tu evento?</legend>
+                        <div class="cot-chips" data-name="pantalla">
+                            <button type="button" class="cot-chip" data-value="Vertical 9:16" aria-pressed="false">Vertical 9:16</button>
+                            <button type="button" class="cot-chip" data-value="Horizontal 16:9" aria-pressed="false">Horizontal 16:9</button>
+                            <button type="button" class="cot-chip" data-value="Por definir" aria-pressed="false">Por definir</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cot-step" data-step="4" hidden>
+                        <legend>¿Cuántos equipos y cuántos días de evento?</legend>
+                        <div class="cot-row">
+                            <label>Equipos
+                                <select id="cotEquipos" class="form-select">
+                                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>Más de 5</option>
+                                </select>
+                            </label>
+                            <label>Días de evento
+                                <select id="cotDias" class="form-select">
+                                    <option>1</option><option>2</option><option>3</option><option>4 a 7</option><option>Más de 7</option>
+                                </select>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cot-step" data-step="5" hidden>
+                        <legend>¿Qué licencia de uso prefieres?</legend>
+                        <div class="cot-chips" data-name="licencia">
+                            <button type="button" class="cot-chip" data-value="60 días" aria-pressed="false">60 días</button>
+                            <button type="button" class="cot-chip" data-value="Anual" aria-pressed="false">Anual</button>
+                            <button type="button" class="cot-chip" data-value="Necesito asesoría" aria-pressed="false">Necesito asesoría</button>
+                        </div>
+                        <p class="cot-hint">La personalización se cotiza una sola vez; la licencia es el permiso de uso por 60 días o por un año.</p>
+                    </fieldset>
+
+                    <fieldset class="cot-step" data-step="6" hidden>
+                        <legend>¿Ya tienes logos y materiales de marca?</legend>
+                        <div class="cot-chips" data-name="materiales">
+                            <button type="button" class="cot-chip" data-value="Sí, ya los tengo" aria-pressed="false">Sí, ya los tengo</button>
+                            <button type="button" class="cot-chip" data-value="Los estoy preparando" aria-pressed="false">Los estoy preparando</button>
+                            <button type="button" class="cot-chip" data-value="Necesito ayuda con el diseño" aria-pressed="false">Necesito ayuda con el diseño</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cot-step" data-step="7" hidden>
+                        <legend>Tus datos</legend>
+                        <div class="form-group">
+                            <label for="cotEmpresa">Empresa o agencia *</label>
+                            <input type="text" id="cotEmpresa" autocomplete="organization" placeholder="Ej. Agencia Creativa SAC / Marca" />
+                        </div>
+                        <div class="form-group">
+                            <label for="cotFecha">Fecha estimada del evento *</label>
+                            <input type="text" id="cotFecha" placeholder="Ej. 15 de noviembre / En 2 semanas" />
+                        </div>
+                        <div class="form-group">
+                            <label for="cotContacto">Tu nombre y WhatsApp o correo *</label>
+                            <input type="text" id="cotContacto" autocomplete="off" placeholder="Ej. Ana Pérez · +51 999 999 999" />
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cot-step" data-step="8" hidden>
+                        <legend>Revisa tu solicitud</legend>
+                        <pre id="cotResumen" class="cot-resumen"></pre>
+                        <label class="cot-consent">
+                            <input type="checkbox" id="cotConsent">
+                            <span>Acepto que César Palero (totemIn) use estos datos solo para responder mi consulta, según la <a href="/privacidad">Política de Privacidad</a> (Ley N° 29733).</span>
+                        </label>
+                        <div class="cot-send">
+                            <a id="cotWhatsapp" class="btn btn-primary btn-large" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+                            <button type="button" id="cotCorreo" class="btn btn-secondary btn-large">Enviar por correo</button>
+                        </div>
+                    </fieldset>
+
+                    <p id="cotError" class="cot-error" role="alert" hidden></p>
+                    <p id="cotStatus" class="cot-status" role="status" aria-live="polite" hidden></p>
+
+                    <div class="cot-nav">
+                        <button type="button" id="cotBack" class="btn btn-secondary" hidden>Atrás</button>
+                        <button type="button" id="cotNext" class="btn btn-primary">Siguiente</button>
+                    </div>
+                    <p class="cot-foot">Atención por WhatsApp de 8:00 a. m. a 6:00 p. m. (hora de Perú). No se muestran precios: te respondo con una cotización según tu caso.</p>
                 </form>
             </div>
         </section>

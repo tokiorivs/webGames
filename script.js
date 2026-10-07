@@ -326,3 +326,139 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
 })();
+
+/* ===== Cotizador guiado (WhatsApp / correo) ===== */
+(function () {
+    var form = document.getElementById('cotizadorForm');
+    if (!form) return;
+
+    var WA = '51960963900';
+    var FORM_KEY = '96c0b266757e4417dab8d571fb17ada6';
+    var TOTAL = 8;
+    var step = 1;
+    var steps = form.querySelectorAll('.cot-step');
+    var label = document.getElementById('cotStepLabel');
+    var fill = document.getElementById('cotBarFill');
+    var back = document.getElementById('cotBack');
+    var next = document.getElementById('cotNext');
+    var err = document.getElementById('cotError');
+    var status = document.getElementById('cotStatus');
+    var wa = document.getElementById('cotWhatsapp');
+    var mail = document.getElementById('cotCorreo');
+
+    function chipsOf(name) { return form.querySelector('.cot-chips[data-name="' + name + '"]'); }
+    function selected(name) {
+        var box = chipsOf(name);
+        return Array.prototype.map.call(box.querySelectorAll('.cot-chip[aria-pressed="true"]'), function (c) { return c.getAttribute('data-value'); });
+    }
+    function val(id) { return (document.getElementById(id).value || '').trim(); }
+
+    form.addEventListener('click', function (e) {
+        var chip = e.target.closest ? e.target.closest('.cot-chip') : null;
+        if (!chip) return;
+        var box = chip.parentNode;
+        if (box.getAttribute('data-multi')) {
+            chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        } else {
+            Array.prototype.forEach.call(box.querySelectorAll('.cot-chip'), function (c) { c.setAttribute('aria-pressed', 'false'); });
+            chip.setAttribute('aria-pressed', 'true');
+        }
+        err.hidden = true;
+    });
+
+    // Preselección desde las páginas de cada juego: /?juego=ruleta#cotizador
+    try {
+        var q = new URLSearchParams(window.location.search).get('juego');
+        if (q) {
+            var pre = chipsOf('juegos').querySelector('.cot-chip[data-key="' + q + '"]');
+            if (pre) pre.setAttribute('aria-pressed', 'true');
+        }
+    } catch (e) { /* sin URLSearchParams */ }
+
+    function summary() {
+        var lines = [
+            'Hola totemIn, quiero cotizar un evento.',
+            'Empresa: ' + val('cotEmpresa'),
+            'Juego(s): ' + selected('juegos').join(', '),
+            'Equipo: ' + selected('equipo').join(', ') + ' · Pantalla: ' + selected('pantalla').join(', '),
+            'Equipos: ' + val('cotEquipos') + ' · Días de evento: ' + val('cotDias'),
+            'Licencia: ' + selected('licencia').join(', '),
+            'Materiales de marca: ' + selected('materiales').join(', '),
+            'Fecha estimada: ' + val('cotFecha'),
+            'Contacto: ' + val('cotContacto')
+        ];
+        return lines.join('\n');
+    }
+
+    function valid(n) {
+        if (n === 1 && selected('juegos').length === 0) return 'Elige al menos un juego.';
+        if (n === 2 && selected('equipo').length === 0) return 'Elige el tipo de equipo.';
+        if (n === 3 && selected('pantalla').length === 0) return 'Elige el tipo de pantalla.';
+        if (n === 5 && selected('licencia').length === 0) return 'Elige una opción de licencia.';
+        if (n === 6 && selected('materiales').length === 0) return 'Cuéntame si ya tienes tus materiales.';
+        if (n === 7 && (!val('cotEmpresa') || !val('cotFecha') || !val('cotContacto'))) return 'Completa los tres datos.';
+        return '';
+    }
+
+    function render() {
+        Array.prototype.forEach.call(steps, function (s) { s.hidden = Number(s.getAttribute('data-step')) !== step; });
+        label.textContent = 'Paso ' + step + ' de ' + TOTAL;
+        fill.style.width = (step / TOTAL * 100) + '%';
+        back.hidden = step === 1;
+        next.hidden = step === TOTAL;
+        if (step === TOTAL) {
+            var text = summary();
+            document.getElementById('cotResumen').textContent = text;
+            wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text);
+        }
+        err.hidden = true;
+        status.hidden = true;
+        if (window.__gtmLoaded && window.dataLayer) window.dataLayer.push({ event: 'cotizador_paso', paso: step });
+    }
+
+    next.addEventListener('click', function () {
+        var m = valid(step);
+        if (m) { err.textContent = m; err.hidden = false; return; }
+        if (step < TOTAL) { step++; render(); }
+    });
+    back.addEventListener('click', function () { if (step > 1) { step--; render(); } });
+
+    function needConsent(e) {
+        if (!document.getElementById('cotConsent').checked) {
+            if (e) e.preventDefault();
+            err.textContent = 'Acepta el uso de tus datos para poder enviar la solicitud.';
+            err.hidden = false;
+            return true;
+        }
+        err.hidden = true;
+        return false;
+    }
+    wa.addEventListener('click', function (e) {
+        if (needConsent(e)) return;
+        if (window.__gtmLoaded && window.dataLayer) window.dataLayer.push({ event: 'cotizador_enviado', canal: 'whatsapp' });
+    });
+    mail.addEventListener('click', function () {
+        if (needConsent(null)) return;
+        mail.disabled = true;
+        status.hidden = true;
+        var fd = new FormData();
+        fd.append('_subject', 'Nueva solicitud de cotización (cotizador totemIn)');
+        fd.append('empresa', val('cotEmpresa'));
+        fd.append('resumen', summary());
+        fd.append('consent_datos', 'Acepto');
+        fetch('https://formsubmit.co/ajax/' + FORM_KEY, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+            .then(function (r) {
+                if (!r.ok) throw new Error('fallo');
+                status.textContent = '¡Solicitud enviada! Te responderé en horario de atención (8:00 a. m. a 6:00 p. m.).';
+                status.hidden = false;
+                if (window.__gtmLoaded && window.dataLayer) window.dataLayer.push({ event: 'cotizador_enviado', canal: 'correo' });
+            })
+            .catch(function () {
+                err.textContent = 'No se pudo enviar por correo. Usa el botón de WhatsApp.';
+                err.hidden = false;
+            })
+            .then(function () { mail.disabled = false; });
+    });
+
+    render();
+})();
