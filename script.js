@@ -463,3 +463,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     render();
 })();
+
+/* ===== Menú de juegos y menú móvil ===== */
+(function () {
+    function init() {
+        var header = document.querySelector('.header');
+        var toggle = document.querySelector('.nav-toggle');
+        var dds = document.querySelectorAll('.nav-dropdown');
+
+        function closeDropdowns(except) {
+            Array.prototype.forEach.call(dds, function (d) {
+                if (d === except) return;
+                d.classList.remove('open');
+                var b = d.querySelector('.nav-dd-btn');
+                if (b) b.setAttribute('aria-expanded', 'false');
+            });
+        }
+        Array.prototype.forEach.call(dds, function (d) {
+            var btn = d.querySelector('.nav-dd-btn');
+            if (!btn) return;
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var open = !d.classList.contains('open');
+                closeDropdowns(d);
+                d.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        });
+        document.addEventListener('click', function () { closeDropdowns(null); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeDropdowns(null);
+                if (header && header.classList.contains('nav-open')) {
+                    header.classList.remove('nav-open');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+        if (toggle && header) {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var open = !header.classList.contains('nav-open');
+                header.classList.toggle('nav-open', open);
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+            });
+        }
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+})();

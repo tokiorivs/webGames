@@ -118,11 +118,23 @@
             <nav class="nav">
                 <a href="/#demostracion" class="nav-link">Galería</a>
                 <a href="/#beneficios" class="nav-link">Beneficios</a>
-                <a href="/#juegos" class="nav-link">Dinámicas</a>
+                <div class="nav-dropdown">
+                    <button type="button" class="nav-link nav-dd-btn" aria-expanded="false" aria-haspopup="true">Juegos <span class="nav-caret" aria-hidden="true">▾</span></button>
+                    <div class="nav-dd-menu" role="menu">
+                        <a href="/#juegos" role="menuitem">Ver todos los juegos</a>
+                        <a href="/ruleta-digital" role="menuitem"><span aria-hidden="true">🎡</span> Ruleta Digital</a>
+                        <a href="/trivia-interactiva" role="menuitem"><span aria-hidden="true">❓</span> Trivia Interactiva</a>
+                        <a href="/juego-de-memoria" role="menuitem"><span aria-hidden="true">🃏</span> Juego de Memoria</a>
+                        <a href="/meteor-rescue" role="menuitem"><span aria-hidden="true">☄️</span> Meteor Rescue</a>
+                        <a href="/raspa-y-gana-digital" role="menuitem"><span aria-hidden="true">🎫</span> Raspa y Gana Digital</a>
+                        <a href="/penales" role="menuitem"><span aria-hidden="true">⚽</span> Penales</a>
+                    </div>
+                </div>
                 <a href="/#simulador" class="nav-link">Simulador en Vivo</a>
                 <a href="/proceso" class="nav-link">Nuestro Proceso</a>
                 <a href="/articulo1" class="nav-link">Artículos</a>
             </nav>
+            <button type="button" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
             <a href="https://wa.me/51960963900?text=Hola%20totemIn,%20me%20interesa%20una%20cotizaci%C3%B3n%20para%20un%20evento."
                 target="_blank" class="btn-p" rel="noopener">
                 <span>WhatsApp</span>
@@ -465,7 +477,7 @@
                     <ul class="footer-links">
                         <li><a href="/#demostracion">Galería de Juegos</a></li>
                         <li><a href="/#beneficios">Beneficios</a></li>
-                        <li><a href="/#juegos">Catálogo de Dinámicas</a></li>
+                        <li><a href="/#juegos">Catálogo de Juegos</a></li>
                         <li><a href="/#simulador">Simulador en Vivo</a></li>
                         <li><a href="/proceso">Nuestro Proceso</a></li>
                         <li><a href="/articulo1">Artículos & Blog</a></li>
