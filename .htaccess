@@ -1,6 +1,35 @@
+Options -Indexes
+ErrorDocument 404 /404.html
+
 RewriteEngine On
+
+# 1) Redirección permanente del artículo (URL antigua -> nueva)
+RewriteRule ^articulo1(\.html)?/?$ /blog/videojuegos-para-totem-interactivo [R=301,L]
+
+# 2) Evitar contenido duplicado: quitar "index.html" y ".html" de la URL visible
+RewriteCond %{THE_REQUEST} \s/(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+RewriteCond %{THE_REQUEST} \s/([^\s?]+)\.html[\s?] [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# 3) /pagina -> pagina.html (páginas que tienen su archivo .html en la raíz)
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# 4) /carpeta -> carpeta/index.html (juegos y blog, organizados en carpetas)
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+?)/?$ $1/index.html [L]
+
+# Archivos y carpetas internas que nunca deben ser públicos
+RedirectMatch 404 ^/\.(git|agent|agents|claude)(/|$)
+<FilesMatch "^(config\.env|ux_ui\.md|google-apps-script-.*\.js|\.gitignore|launch\.json)$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(docx|pdf|md|env|bak)$">
+    Require all denied
+</FilesMatch>
 
 # Compresión GZIP / Deflate para carga rápida en redes móviles
 <IfModule mod_deflate.c>
@@ -14,7 +43,10 @@ RewriteRule ^([^\.]+)$ $1.html [NC,L]
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/gif "access plus 1 month"
     ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
     ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType video/webm "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
     ExpiresByType text/css "access plus 1 week"
     ExpiresByType application/javascript "access plus 1 week"
     ExpiresByType text/javascript "access plus 1 week"
