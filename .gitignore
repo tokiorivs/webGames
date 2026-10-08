@@ -48,3 +48,6 @@ dist/
 build/
 .cache/
 ux_ui.md
+
+# Paquetes para subir al hosting
+*.zip
