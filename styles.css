@@ -3629,3 +3629,8 @@ a {
 /* ===== Capturas de juegos ===== */
 .gp-shot img { border: 1px solid var(--surface-border); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
 .gp-cap { margin-top: 10px; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+
+/* Imagen vertical (captura de juego) dentro de las secciones de Proceso */
+.visual-stage-portrait { display: flex; justify-content: center; align-items: center; padding: 28px; }
+.visual-stage-portrait img { width: auto; height: 560px; max-width: 100%; object-fit: contain; border-radius: 18px; border: 1px solid var(--surface-border); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4); }
+@media (max-width: 640px) { .visual-stage-portrait img { height: 440px; } }
