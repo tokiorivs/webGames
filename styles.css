@@ -1819,7 +1819,7 @@ a {
 
 @media (min-width: 768px) {
     .footer-top-grid {
-        grid-template-columns: 2fr 1fr 1.5fr;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
         gap: var(--space-8);
     }
 }

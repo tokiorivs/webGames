@@ -1,0 +1,4 @@
+# Redirecciones permanentes (Cloudflare Pages y Netlify)
+/articulo1 /blog/videojuegos-para-totem-interactivo 301
+/articulo1/ /blog/videojuegos-para-totem-interactivo 301
+/articulo1.html /blog/videojuegos-para-totem-interactivo 301
