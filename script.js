@@ -108,7 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (mainMediaPlaceholder) mainMediaPlaceholder.style.display = 'none';
                 if (mainMediaImage) {
                     mainMediaImage.style.display = 'block';
-                    mainMediaImage.src = BASE_URL + src;
+                    mainMediaImage.src = (src && src.charAt(0) === '/') ? src : BASE_URL + src;
+                    mainMediaImage.alt = thumb.getAttribute('data-alt') || mainMediaImage.alt;
                 }
             }
         });

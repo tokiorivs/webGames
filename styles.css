@@ -1243,40 +1243,32 @@ a {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
+    background-position: center 35%;
 }
 
 /* Base colors for thumbnails (fallback or placeholders) */
 .game-thumb-1 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Tecsup_Menu_3.png');
+    background-image: url('/img/ruleta-digital-3.webp');
 }
 
 .game-thumb-2 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/totem_tecsup_pregunta_correcta.png');
+    background-image: url('/img/trivia-interactiva-2.webp');
 }
 
 .game-thumb-3 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Ruleta_ganadora_2.png');
+    background-image: url('/img/juego-de-memoria-2.webp');
 }
 
 .game-thumb-4 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Urosur_raspaygana_pricipal.png');
+    background-image: url('/img/meteor-rescue-2.webp');
 }
 
 .game-thumb-5 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Urosur_cartilla_ganadora.png');
+    background-image: url('/img/raspa-y-gana-digital-3.webp');
 }
 
 .game-thumb-6 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Luma_memoria.png');
-}
-
-.game-thumb-7 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Hidrogame_2.png');
-}
-
-.game-thumb-8 {
-    background-image: url('https://pub-df6ac2b60b9047d88d95e2589d854e41.r2.dev/r2/Urosur_menu.png');
+    background-image: url('/img/penales-3.webp');
 }
 
 /* Metadata Column */
@@ -1292,16 +1284,35 @@ a {
 .game-banner {
     width: 100%;
     aspect-ratio: 2 / 1;
-    background: linear-gradient(135deg, rgba(155, 240, 11, 0.8), rgba(168, 85, 247, 0.85));
+    background:
+        linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.28) 50%, transparent 60%) 0 0 / 250% 100% no-repeat,
+        radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1.5px) 0 0 / 16px 16px,
+        linear-gradient(135deg, rgba(155, 240, 11, 0.85), rgba(59, 130, 246, 0.8), rgba(168, 85, 247, 0.85), rgba(155, 240, 11, 0.85)) 0 0 / 300% 300%;
     border-radius: 12px;
     margin-bottom: var(--space-3);
     position: relative;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     overflow: hidden;
+    isolation: isolate;
+    animation: banner-flow 9s ease-in-out infinite;
+}
+
+/* Orbes de luz que orbitan detrás del texto */
+.game-banner::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.35) 0, transparent 18%),
+        radial-gradient(circle at 70% 60%, rgba(168, 85, 247, 0.55) 0, transparent 22%),
+        radial-gradient(circle at 55% 25%, rgba(155, 240, 11, 0.5) 0, transparent 16%);
+    filter: blur(8px);
+    animation: banner-orbit 14s linear infinite;
 }
 
 .game-banner::after {
-    content: "totemIn";
+    content: "TotemIn";
     position: absolute;
     bottom: var(--space-2);
     left: var(--space-2);
@@ -1311,6 +1322,30 @@ a {
     font-size: var(--font-size-md);
     color: #ffffff;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    animation: banner-wordmark 4s ease-in-out infinite;
+}
+
+@keyframes banner-flow {
+    0%   { background-position: 150% 0, 0 0, 0% 50%; }
+    50%  { background-position: -50% 0, 8px 8px, 100% 50%; }
+    100% { background-position: 150% 0, 16px 16px, 0% 50%; }
+}
+
+@keyframes banner-orbit {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes banner-wordmark {
+    0%, 100% { transform: translateY(0); letter-spacing: 0.04em; }
+    50%      { transform: translateY(-4px); letter-spacing: 0.14em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .game-banner,
+    .game-banner::before,
+    .game-banner::after {
+        animation: none;
+    }
 }
 
 .game-short-desc {
