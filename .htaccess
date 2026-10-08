@@ -3,6 +3,11 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
+# 0) Una sola versión del sitio: https y sin "www" (evita contenido duplicado)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://totemin.cc%{REQUEST_URI} [R=301,L]
+
 # 1) Redirección permanente del artículo (URL antigua -> nueva)
 RewriteRule ^articulo1(\.html)?/?$ /blog/videojuegos-para-totem-interactivo [R=301,L]
 
@@ -27,7 +32,7 @@ RedirectMatch 404 ^/\.(git|agent|agents|claude)(/|$)
 <FilesMatch "^(config\.env|ux_ui\.md|google-apps-script-.*\.js|\.gitignore|launch\.json)$">
     Require all denied
 </FilesMatch>
-<FilesMatch "\.(docx|pdf|md|env|bak)$">
+<FilesMatch "\.(docx|pdf|md|env|bak|zip|sql|log)$">
     Require all denied
 </FilesMatch>
 
